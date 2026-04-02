@@ -155,11 +155,11 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex flex-col gap-6">
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 w-full flex flex-col gap-4 sm:gap-6">
 
         <section class="mb-2">
             <p
-                class="text-gray-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-[15px]">
+                class="text-gray-700 leading-relaxed bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-100 text-sm sm:text-[15px]">
                 <span class="en-content">To truly evaluate a manifesto, we must look at both sides of the coin. This
                     dashboard provides an objective, data-driven analysis of the LDF government's claims. We explore
                     verifiable <b>Achievements</b> (like poverty reduction and startup growth) alongside significant
@@ -173,49 +173,57 @@
         </section>
 
         <!-- Summary Stats (Balanced: 2 Good, 2 Bad) -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-2">
             <!-- Good -->
             <div
-                class="bg-white p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
+                class="bg-white p-4 sm:p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
-                <div class="text-2xl mb-1">📉</div>
-                <div class="text-xl font-bold text-gray-800 title-font">0.55%</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Lowest Poverty (MPI)</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">ഏറ്റവും കുറഞ്ഞ ദാരിദ്ര്യം
+                <div class="text-xl sm:text-2xl mb-1">📉</div>
+                <div class="text-lg sm:text-xl font-bold text-gray-800 title-font">0.55%</div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Lowest Poverty
+                </div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">ഏറ്റവും കുറഞ്ഞ
+                    ദാരിദ്ര്യം</div>
+            </div>
+            <!-- Good -->
+            <div
+                class="bg-white p-4 sm:p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                <div class="text-xl sm:text-2xl mb-1">🚀</div>
+                <div class="text-lg sm:text-xl font-bold text-gray-800 title-font">5,000+</div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Startups</div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">
+                    സ്റ്റാർട്ടപ്പുകൾ</div>
+            </div>
+            <!-- Bad -->
+            <div
+                class="bg-white p-4 sm:p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-rose-500"></div>
+                <div class="text-xl sm:text-2xl mb-1">💳</div>
+                <div class="text-lg sm:text-xl font-bold text-gray-800 title-font">₹4 L Cr+</div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Public Debt
+                </div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">സംസ്ഥാന പൊതുകടം
                 </div>
             </div>
-            <!-- Good -->
+            <!-- Bad -->
             <div
-                class="bg-white p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
-                <div class="text-2xl mb-1">🚀</div>
-                <div class="text-xl font-bold text-gray-800 title-font">5,000+</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Startups Registered</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">പുതിയ സ്റ്റാർട്ടപ്പുകൾ</div>
-            </div>
-            <!-- Bad -->
-            <div class="bg-white p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
+                class="bg-white p-4 sm:p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-rose-500"></div>
-                <div class="text-2xl mb-1">💳</div>
-                <div class="text-xl font-bold text-gray-800 title-font">₹4 L Cr+</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Public Debt Burden</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">സംസ്ഥാന പൊതുകടം</div>
-            </div>
-            <!-- Bad -->
-            <div class="bg-white p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-rose-500"></div>
-                <div class="text-2xl mb-1">🎓</div>
-                <div class="text-xl font-bold text-gray-800 title-font">28.7%</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Youth Unemployment</div>
-                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">യുവജന തൊഴിലില്ലായ്മ</div>
+                <div class="text-xl sm:text-2xl mb-1">🎓</div>
+                <div class="text-lg sm:text-xl font-bold text-gray-800 title-font">28.7%</div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Youth Unemp.
+                </div>
+                <div class="text-[9px] sm:text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">തൊഴിലില്ലായ്മ
+                </div>
             </div>
         </section>
 
-        <section class="flex flex-col lg:flex-row gap-6 h-[850px] lg:h-[650px]">
+        <section class="flex flex-col lg:flex-row gap-6 lg:h-[650px]">
 
             <!-- Left Sidebar -->
             <div
-                class="w-full lg:w-1/3 flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                class="w-full lg:w-1/3 flex flex-col h-[400px] lg:h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden shrink-0">
                 <div class="p-4 border-b border-gray-200 bg-gray-50">
                     <h2 class="text-lg font-bold text-gray-800 mb-3 title-font">
                         <span class="en-content">Select an Area</span>
@@ -229,12 +237,12 @@
                         <button
                             class="px-3 py-1 rounded-md text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300"
                             data-filter="success">
-                            <span class="en-content">Achievements ✅</span><span class="ml-content">നേട്ടങ്ങൾ ✅</span>
+                            <span class="en-content">Success ✅</span><span class="ml-content">നേട്ടങ്ങൾ ✅</span>
                         </button>
                         <button
                             class="px-3 py-1 rounded-md text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300"
                             data-filter="concern">
-                            <span class="en-content">Concerns ⚠️</span><span class="ml-content">വെല്ലുവിളികൾ ⚠️</span>
+                            <span class="en-content">Concern ⚠️</span><span class="ml-content">വെല്ലുവിളികൾ ⚠️</span>
                         </button>
                     </div>
                 </div>
@@ -245,16 +253,16 @@
 
             <!-- Right Panel -->
             <div
-                class="w-full lg:w-2/3 h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar flex flex-col relative">
+                class="w-full lg:w-2/3 min-h-[500px] lg:h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar flex flex-col relative">
 
-                <div id="detail-view" style="display: none;" class="flex flex-col h-full relative">
+                <div id="detail-view" style="display: none;" class="flex flex-col min-h-full relative">
 
-                    <div class="p-6 border-b border-gray-100 bg-white" id="detail-header">
+                    <div class="p-4 sm:p-6 border-b border-gray-100 bg-white" id="detail-header">
                         <div class="flex items-center gap-2 mb-2" id="detail-category-badge"></div>
-                        <h2 class="text-2xl font-bold text-gray-800 title-font" id="detail-title"></h2>
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 title-font" id="detail-title"></h2>
                     </div>
 
-                    <div class="p-6 flex-grow flex flex-col gap-5 bg-gray-50/50">
+                    <div class="p-4 sm:p-6 flex-grow flex flex-col gap-4 sm:gap-5 bg-gray-50/50">
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- The Claim -->
@@ -262,7 +270,7 @@
                                 <h3
                                     class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1 title-font">
                                     <span class="en-content">📄 Official Claim</span>
-                                    <span class="ml-content">📄 പ്രകടനപത്രികയിലെ വാഗ്ദാനം</span>
+                                    <span class="ml-content">📄 വാഗ്ദാനം</span>
                                 </h3>
                                 <p class="text-gray-700 text-sm font-medium italic" id="detail-claim-text"></p>
                             </div>
@@ -278,7 +286,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="bg-white p-4 sm:p-5 rounded-lg border border-gray-200 shadow-sm">
                             <h3 class="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2 title-font">
                                 <span>🔍</span>
                                 <span class="en-content">Context & Analysis</span>
@@ -289,7 +297,8 @@
 
                         <div class="mt-auto w-full pb-2">
                             <!-- Responsive chart container -->
-                            <div class="chart-container bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
+                            <div
+                                class="chart-container bg-white rounded-lg p-2 sm:p-3 border border-gray-200 shadow-sm">
                                 <canvas id="analysisChart"></canvas>
                             </div>
                         </div>
@@ -297,16 +306,15 @@
                 </div>
 
                 <div id="empty-state"
-                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-gray-400 h-full">
-                    <div class="text-6xl mb-4">⚖️</div>
-                    <h3 class="text-xl font-bold text-gray-600 mb-2 title-font">
+                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-gray-400 min-h-[400px]">
+                    <div class="text-5xl sm:text-6xl mb-4">⚖️</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-600 mb-2 title-font">
                         <span class="en-content">Explore the Data</span>
                         <span class="ml-content">വിവരങ്ങൾ പരിശോധിക്കാം</span>
                     </h3>
                     <p class="text-sm">
-                        <span class="en-content">Select an item from the left to view the detailed fact-check and
-                            charts.</span>
-                        <span class="ml-content">വിശദാംശങ്ങൾ കാണാൻ ഇടതുവശത്തുള്ള കാർഡുകളിൽ ക്ലിക്ക് ചെയ്യുക.</span>
+                        <span class="en-content">Select an item from the list above to view details.</span>
+                        <span class="ml-content">വിശദാംശങ്ങൾ കാണാൻ ലിസ്റ്റിൽ നിന്ന് ഒന്ന് തിരഞ്ഞെടുക്കുക.</span>
                     </p>
                 </div>
 
