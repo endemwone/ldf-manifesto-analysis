@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>പ്രകടനപത്രിക: റിയാലിറ്റി ചെക്ക് (Reality Check)</title>
+    <title>LDF Manifesto 2026: Balanced Analysis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Meera+Inimai&family=Outfit:wght@400;700;900&family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Meera+Inimai&family=Outfit:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
 
-        :root {
-            --ml-font: 'Manjari', sans-serif;
-            --en-font: 'Inter', sans-serif;
+        /* Dynamic Language Display Logic */
+        html[lang="en"] .ml-content {
+            display: none !important;
+        }
+
+        html[lang="ml"] .en-content {
+            display: none !important;
         }
 
         body {
-            font-family: var(--ml-font);
             background-color: #f8fafc;
             color: #1e293b;
         }
 
-        .en-content {
-            font-family: var(--en-font);
-            display: none;
+        /* Font assignments based on language */
+        html[lang="en"] body {
+            font-family: 'Inter', sans-serif;
         }
 
-        .ml-content {
-            display: block;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        .outfit-font {
-            font-family: 'Meera Inimai', sans-serif;
-        }
-
-        .en-content h1,
-        .en-content h2,
-        .en-content h3,
-        .en-content h4 {
+        html[lang="en"] h1,
+        html[lang="en"] h2,
+        html[lang="en"] h3,
+        html[lang="en"] .title-font {
             font-family: 'Outfit', sans-serif;
         }
 
+        html[lang="ml"] body {
+            font-family: 'Manjari', sans-serif;
+        }
+
+        html[lang="ml"] h1,
+        html[lang="ml"] h2,
+        html[lang="ml"] h3,
+        html[lang="ml"] .title-font {
+            font-family: 'Meera Inimai', sans-serif;
+        }
+
+        /* Chart container strictly styled to prevent overflow and maintain responsiveness */
         .chart-container {
             position: relative;
             width: 100%;
@@ -84,76 +87,70 @@
         }
 
         .claim-card:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-left-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
         }
 
         .active-filter {
-            background-color: #1e293b;
+            background-color: #4f46e5;
             color: white;
-            border-color: #1e293b;
+            border-color: #4f46e5;
         }
 
         .active-card {
-            border-left: 4px solid #ef4444;
-            background-color: #fff1f2;
+            background-color: #eff6ff;
+            border-left-color: #4f46e5;
         }
 
-        .busted-stamp {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #ef4444;
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            border: 4px solid #ef4444;
-            padding: 0.25rem 1rem;
-            border-radius: 0.5rem;
-            transform: rotate(15deg);
-            opacity: 0.2;
-            pointer-events: none;
-            letter-spacing: 2px;
-            z-index: 0;
+        .status-badge.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
         }
 
-        .language-toggle {
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .status-badge.concern {
+            background-color: #ffe4e6;
+            color: #9f1239;
+            border: 1px solid #fecdd3;
         }
     </style>
 </head>
 
 <body class="antialiased min-h-screen flex flex-col">
 
-    <header class="bg-slate-900 shadow-md border-b border-slate-800 sticky top-0 z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center">
-            <div class="lang-ml ml-content">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
-                    <span class="text-3xl">🕵️‍♂️</span> പ്രകടനപത്രിക: <span class="text-red-500">റിയാലിറ്റി
-                        ചെക്ക്</span>
+    <!-- Chosen Palette: Indigo (#4f46e5) for primary UI/Analytics, Emerald (#10b981) for Achievements, Rose (#f43f5e) for Concerns. Clean, objective, and balanced. -->
+    <!-- Application Structure Plan: A balanced dashboard. Top header includes a language toggle. Summary cards show a mix of positive achievements and ongoing challenges. The main workspace uses a master-detail pattern. The left sidebar lists claims categorized as 'Achievements' or 'Concerns'. Clicking a card updates the right panel with objective context, exact statistics, and a Chart.js visualization to provide a nuanced, unbiased view of the data. -->
+    <!-- Visualization & Content Choices: 
+         - Poverty (Achievement): Bar chart (Kerala vs National) showing positive progress.
+         - Debt (Concern): Line chart showing rising debt trends indicating fiscal stress.
+         - Startups (Achievement): Bar chart showing massive growth in registrations.
+         - K-FON (Concern): Doughnut chart showing disparity between target and actual.
+         - Education (Achievement): Bar chart showing enrollment spikes.
+         - Unemployment (Concern): Bar chart showing high youth unemployment vs national average.
+         All charts use Chart.js on Canvas. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-indigo-700 flex items-center gap-2 title-font">
+                    <span>⚖️</span>
+                    <span class="en-content">LDF Manifesto 2026 Analysis</span>
+                    <span class="ml-content">എൽഡിഎഫ് പ്രകടനപത്രിക 2026</span>
                 </h1>
-                <p class="text-sm text-slate-400 mt-1">തള്ളുകൾ vs യാഥാർത്ഥ്യം - കണക്കുകൾ കള്ളം പറയില്ലല്ലോ!</p>
-            </div>
-            <div class="lang-en en-content">
-                <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2 outfit-font">
-                    <span class="text-3xl">🕵️‍♂️</span> Manifesto: <span class="text-red-500">Reality Check</span>
-                </h1>
-                <p class="text-sm text-slate-400 mt-1">Tall tales vs. Actual reality — Numbers don't lie, babes!</p>
+                <p class="text-sm text-gray-500 mt-1">
+                    <span class="en-content">A balanced review of achievements and areas of concern.</span>
+                    <span class="ml-content">നേട്ടങ്ങളുടെയും വെല്ലുവിളികളുടെയും വസ്തുനിഷ്ഠമായ വിശകലനം.</span>
+                </p>
             </div>
 
-            <div class="flex items-center gap-4 mt-4 sm:mt-0">
-                <div class="bg-slate-800 p-1 rounded-lg flex border border-slate-700">
-                    <button onclick="setLanguage('ml')" id="btn-ml"
-                        class="px-3 py-1 rounded-md text-xs font-bold transition-all bg-red-600 text-white">മലയാളം</button>
-                    <button onclick="setLanguage('en')" id="btn-en"
-                        class="px-3 py-1 rounded-md text-xs font-bold transition-all text-slate-400 hover:text-white">English</button>
-                </div>
-                <div
-                    class="bg-red-500/10 px-4 py-2 rounded-lg border border-red-500/30 text-sm font-semibold text-red-400 animate-pulse outfit-font">
-                    FACT-CHECK MODE: ON 🚨
-                </div>
+            <!-- Language Toggle -->
+            <div class="flex items-center bg-gray-100 p-1 rounded-lg border border-gray-200">
+                <button onclick="setLanguage('en')" id="btn-en"
+                    class="px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow-sm text-indigo-700">English</button>
+                <button onclick="setLanguage('ml')" id="btn-ml"
+                    class="px-3 py-1.5 text-sm font-semibold rounded-md text-gray-600 hover:text-indigo-600">മലയാളം</button>
             </div>
         </div>
     </header>
@@ -161,56 +158,56 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex flex-col gap-6">
 
         <section class="mb-2">
-            <div class="ml-content">
-                <p
-                    class="text-slate-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-slate-200 text-lg">
-                    അടിപൊളി വാഗ്ദാനങ്ങളും ഗ്രാഫുകളും കണ്ട് മയങ്ങാൻ നമ്മൾ തയ്യാറല്ല! ഈ ഡാഷ്ബോർഡ് ലക്ഷ്യമിടുന്നത്
-                    പ്രകടനപത്രികയിലെ <strong class="text-red-600">പൊള്ളയായ അവകാശവാദങ്ങളെയും, യാഥാർത്ഥ്യവുമായി
-                        ബന്ധമില്ലാത്ത
-                        കണക്കുകളെയും</strong> പൊളിച്ചടുക്കാനാണ്. കടക്കെണി, തൊഴിലില്ലായ്മ, എങ്ങുമെത്താത്ത സ്വപ്നപദ്ധതികൾ
-                    എന്നിവയുടെ യഥാർത്ഥ ചിത്രം താഴെ പരിശോധിക്കാം.
-                </p>
-            </div>
-            <div class="en-content">
-                <p
-                    class="text-slate-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-slate-200 text-lg">
-                    We're not getting hypnotized by flashy PR and pretty graphs today! This dashboard is designed to
-                    rigorously cross-examine the <strong class="text-red-600">empty claims, exaggerated statistics, and
-                        ghost projects</strong> in the manifesto. Let's look at the actual ground reality of the state's
-                    debt trap, unemployment crisis, and stalled mega-projects. Bring the receipts!
-                </p>
-            </div>
+            <p
+                class="text-gray-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-[15px]">
+                <span class="en-content">To truly evaluate a manifesto, we must look at both sides of the coin. This
+                    dashboard provides an objective, data-driven analysis of the LDF government's claims. We explore
+                    verifiable <b>Achievements</b> (like poverty reduction and startup growth) alongside significant
+                    <b>Concerns</b> (like public debt and project delays) to give you a complete, unbiased
+                    picture.</span>
+                <span class="ml-content">ഒരു പ്രകടനപത്രികയെ കൃത്യമായി വിലയിരുത്താൻ നാണയത്തിന്റെ ഇരുവശങ്ങളും
+                    പരിശോധിക്കേണ്ടതുണ്ട്. സർക്കാരിന്റെ അവകാശവാദങ്ങളുടെ വസ്തുനിഷ്ഠമായ വിശകലനമാണ് ഈ ഡാഷ്ബോർഡ് നൽകുന്നത്.
+                    ദാരിദ്ര്യ നിർമ്മാർജ്ജനം, ഐടി രംഗത്തെ വളർച്ച തുടങ്ങിയ <b>നേട്ടങ്ങൾക്കൊപ്പം</b>, പൊതുകടം,
+                    തൊഴിലില്ലായ്മ തുടങ്ങിയ <b>വെല്ലുവിളികളും</b> ഞങ്ങൾ ഇവിടെ പരിശോധിക്കുന്നു.</span>
+            </p>
         </section>
 
-        <!-- High-level Reality Check Stats -->
+        <!-- Summary Stats (Balanced: 2 Good, 2 Bad) -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            <div class="bg-red-50 p-5 rounded-xl border border-red-100 text-center">
-                <div class="text-3xl mb-2">📉</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">₹4 ലക്ഷം കോടി+</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font en-content">₹4 Lakh Crore+</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">സംസ്ഥാന പൊതുകടം</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">State Public Debt</div>
+            <!-- Good -->
+            <div
+                class="bg-white p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                <div class="text-2xl mb-1">📉</div>
+                <div class="text-xl font-bold text-gray-800 title-font">0.55%</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Lowest Poverty (MPI)</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">ഏറ്റവും കുറഞ്ഞ ദാരിദ്ര്യം
+                </div>
             </div>
-            <div class="bg-amber-50 p-5 rounded-xl border border-amber-100 text-center">
-                <div class="text-3xl mb-2">🤷‍♂️</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">~ 28.7%</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font en-content">~ 28.7%</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">തൊഴിലില്ലായ്മ (യുവജനങ്ങൾ)</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">Youth Unemployment</div>
+            <!-- Good -->
+            <div
+                class="bg-white p-5 rounded-xl border border-emerald-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                <div class="text-2xl mb-1">🚀</div>
+                <div class="text-xl font-bold text-gray-800 title-font">5,000+</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Startups Registered</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">പുതിയ സ്റ്റാർട്ടപ്പുകൾ</div>
             </div>
-            <div class="bg-orange-50 p-5 rounded-xl border border-orange-100 text-center">
-                <div class="text-3xl mb-2">🐌</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">ഇഴയുന്നു</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font en-content">Crawling</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">വൻകിട പദ്ധതികൾ (KFON)</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">Mega Projects (KFON)</div>
+            <!-- Bad -->
+            <div class="bg-white p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-rose-500"></div>
+                <div class="text-2xl mb-1">💳</div>
+                <div class="text-xl font-bold text-gray-800 title-font">₹4 L Cr+</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Public Debt Burden</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">സംസ്ഥാന പൊതുകടം</div>
             </div>
-            <div class="bg-slate-100 p-5 rounded-xl border border-slate-200 text-center">
-                <div class="text-3xl mb-2">👻</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">0%</div>
-                <div class="text-xl font-bold text-slate-800 outfit-font en-content">0%</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">കെ-റെയിൽ പുരോഗതി</div>
-                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">K-Rail Progress</div>
+            <!-- Bad -->
+            <div class="bg-white p-5 rounded-xl border border-rose-100 shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-rose-500"></div>
+                <div class="text-2xl mb-1">🎓</div>
+                <div class="text-xl font-bold text-gray-800 title-font">28.7%</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 en-content">Youth Unemployment</div>
+                <div class="text-[11px] text-gray-500 font-bold uppercase mt-1 ml-content">യുവജന തൊഴിലില്ലായ്മ</div>
             </div>
         </section>
 
@@ -218,82 +215,81 @@
 
             <!-- Left Sidebar -->
             <div
-                class="w-full lg:w-1/3 flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                <div class="p-4 border-b border-slate-200 bg-slate-50">
-                    <h2 class="text-lg font-bold text-slate-800 mb-3 outfit-font ml-content">പരിശോധിക്കേണ്ടവ 🔍</h2>
-                    <h2 class="text-lg font-bold text-slate-800 mb-3 outfit-font en-content">Claims to Interrogate 🔍
+                class="w-full lg:w-1/3 flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="p-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 title-font">
+                        <span class="en-content">Select an Area</span>
+                        <span class="ml-content">വിഭാഗങ്ങൾ തിരഞ്ഞെടുക്കുക</span>
                     </h2>
                     <div class="flex flex-wrap gap-2" id="filter-container">
-                        <button class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn active-filter"
+                        <button class="px-3 py-1 rounded-md text-xs font-semibold border filter-btn active-filter"
                             data-filter="all">
-                            <span class="ml-content">എല്ലാം</span><span class="en-content">All</span>
+                            <span class="en-content">All</span><span class="ml-content">എല്ലാം</span>
                         </button>
                         <button
-                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
-                            data-filter="economy">
-                            <span class="ml-content">സമ്പദ്‌വ്യവസ്ഥ</span><span class="en-content">Economy</span>
+                            class="px-3 py-1 rounded-md text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300"
+                            data-filter="success">
+                            <span class="en-content">Achievements ✅</span><span class="ml-content">നേട്ടങ്ങൾ ✅</span>
                         </button>
                         <button
-                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
-                            data-filter="infra">
-                            <span class="ml-content">പദ്ധതികൾ</span><span class="en-content">Projects</span>
-                        </button>
-                        <button
-                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
-                            data-filter="jobs">
-                            <span class="ml-content">തൊഴിൽ</span><span class="en-content">Jobs</span>
+                            class="px-3 py-1 rounded-md text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300"
+                            data-filter="concern">
+                            <span class="en-content">Concerns ⚠️</span><span class="ml-content">വെല്ലുവിളികൾ ⚠️</span>
                         </button>
                     </div>
                 </div>
-                <div class="overflow-y-auto custom-scrollbar p-2 flex-grow bg-slate-50" id="claims-list"></div>
+                <div class="overflow-y-auto custom-scrollbar p-2 flex-grow bg-gray-50" id="claims-list">
+                    <!-- Cards injected by JS -->
+                </div>
             </div>
 
             <!-- Right Panel -->
             <div
-                class="w-full lg:w-2/3 h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-y-auto custom-scrollbar flex flex-col relative">
+                class="w-full lg:w-2/3 h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar flex flex-col relative">
+
                 <div id="detail-view" style="display: none;" class="flex flex-col h-full relative">
-                    <div class="busted-stamp">FACT CHECKED</div>
-                    <div class="p-6 border-b border-slate-200 bg-slate-900 text-white relative z-10">
-                        <div class="flex items-center gap-2 text-sm font-medium text-red-400 mb-1"
-                            id="detail-category-badge"></div>
-                        <h2 class="text-2xl font-bold outfit-font" id="detail-title"></h2>
+
+                    <div class="p-6 border-b border-gray-100 bg-white" id="detail-header">
+                        <div class="flex items-center gap-2 mb-2" id="detail-category-badge"></div>
+                        <h2 class="text-2xl font-bold text-gray-800 title-font" id="detail-title"></h2>
                     </div>
 
-                    <div class="p-6 flex-grow flex flex-col gap-6 relative z-10">
+                    <div class="p-6 flex-grow flex flex-col gap-5 bg-gray-50/50">
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-1 h-full bg-slate-400"></div>
+                            <!-- The Claim -->
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
                                 <h3
-                                    class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2 outfit-font">
-                                    <span>🧢</span> <span class="ml-content">അവകാശവാദം (The Claim)</span><span
-                                        class="en-content">The Claim</span>
+                                    class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1 title-font">
+                                    <span class="en-content">📄 Official Claim</span>
+                                    <span class="ml-content">📄 പ്രകടനപത്രികയിലെ വാഗ്ദാനം</span>
                                 </h3>
-                                <p class="text-slate-800 text-md font-semibold italic" id="detail-claim-text"></p>
+                                <p class="text-gray-700 text-sm font-medium italic" id="detail-claim-text"></p>
                             </div>
-                            <div class="bg-red-50 p-5 rounded-lg border border-red-200 relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+
+                            <!-- The Data -->
+                            <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100 shadow-sm">
                                 <h3
-                                    class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2 flex items-center gap-2 outfit-font">
-                                    <span>💥</span> <span class="ml-content">യാഥാർത്ഥ്യം (The Reality)</span><span
-                                        class="en-content">The Reality</span>
+                                    class="text-[10px] font-bold text-indigo-500 uppercase tracking-wider mb-2 flex items-center gap-1 title-font">
+                                    <span class="en-content">📊 Key Statistic</span>
+                                    <span class="ml-content">📊 പ്രധാന കണക്ക്</span>
                                 </h3>
-                                <div class="text-xl font-bold text-red-700 outfit-font" id="detail-stat"></div>
+                                <div class="text-lg font-bold text-indigo-700 title-font" id="detail-stat"></div>
                             </div>
                         </div>
 
-                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
-                            <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2 outfit-font">
-                                <span>🕵️‍♂️</span> <span class="ml-content">വസ്തുതാപരിശോധന (Analysis)</span><span
-                                    class="en-content">Tea Spilled (Analysis)</span>
+                        <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                            <h3 class="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2 title-font">
+                                <span>🔍</span>
+                                <span class="en-content">Context & Analysis</span>
+                                <span class="ml-content">വിശകലനവും പശ്ചാത്തലവും</span>
                             </h3>
-                            <p class="text-slate-600 leading-relaxed text-sm" id="detail-context"></p>
+                            <p class="text-gray-600 leading-relaxed text-sm" id="detail-context"></p>
                         </div>
 
-                        <div class="mt-auto w-full pb-4">
-                            <h3 class="text-sm font-bold text-slate-800 mb-4 text-center outfit-font" id="chart-title">
-                            </h3>
-                            <div
-                                class="chart-container bg-slate-50 rounded-lg p-3 border border-slate-200 shadow-inner">
+                        <div class="mt-auto w-full pb-2">
+                            <!-- Responsive chart container -->
+                            <div class="chart-container bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                                 <canvas id="analysisChart"></canvas>
                             </div>
                         </div>
@@ -301,251 +297,353 @@
                 </div>
 
                 <div id="empty-state"
-                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-slate-400 h-full">
-                    <div class="text-6xl mb-4">🤡</div>
-                    <h3 class="text-xl font-bold text-slate-600 mb-2 outfit-font ml-content">തള്ളുകൾ പൊളിച്ചടുക്കാം!
+                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-gray-400 h-full">
+                    <div class="text-6xl mb-4">⚖️</div>
+                    <h3 class="text-xl font-bold text-gray-600 mb-2 title-font">
+                        <span class="en-content">Explore the Data</span>
+                        <span class="ml-content">വിവരങ്ങൾ പരിശോധിക്കാം</span>
                     </h3>
-                    <h3 class="text-xl font-bold text-slate-600 mb-2 outfit-font en-content">Let's bust these myths!
-                    </h3>
-                    <p class="text-md ml-content">ഇടതുവശത്തുള്ള കാർഡുകളിൽ ക്ലിക്ക് ചെയ്ത് ഓരോ വാഗ്ദാനത്തിന്റെയും യഥാർത്ഥ
-                        അവസ്ഥ മനസ്സിലാക്കുക.</p>
-                    <p class="text-md en-content">Click on the cards on the left to reveal the brutal truth behind the
-                        manifesto's promises.</p>
+                    <p class="text-sm">
+                        <span class="en-content">Select an item from the left to view the detailed fact-check and
+                            charts.</span>
+                        <span class="ml-content">വിശദാംശങ്ങൾ കാണാൻ ഇടതുവശത്തുള്ള കാർഡുകളിൽ ക്ലിക്ക് ചെയ്യുക.</span>
+                    </p>
                 </div>
+
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm mt-auto border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 outfit-font tracking-wide text-xs uppercase">
-            Reality Check Dashboard | Manifesto Fact-Check | Data based on CAG & RBI reports.
-        </div>
-    </footer>
-
     <script>
-        let currentLang = 'ml';
-        const dataSet = {
-            ml: [
-                {
-                    id: 1, category: "infra", categoryName: "അടിസ്ഥാന സൗകര്യം", icon: "🌐",
-                    title: "കെ-ഫോൺ (K-FON) വാഗ്ദാനം",
-                    claim: "20 ലക്ഷം ബിപിഎൽ കുടുംബങ്ങൾക്ക് സൗജന്യ അതിവേഗ ഇന്റർനെറ്റ് നൽകി.",
-                    stat: "ലക്ഷ്യത്തിന്റെ 1% പോലും എത്തിയില്ല",
-                    context: "2017-ൽ പ്രഖ്യാപിച്ച പദ്ധതി. 20 ലക്ഷം പാവപ്പെട്ട കുടുംബങ്ങൾക്ക് സൗജന്യ ഇന്റർനെറ്റ് എന്നായിരുന്നു വാഗ്ദാനം. എന്നാൽ വർഷങ്ങൾ കഴിഞ്ഞിട്ടും വെറും ഏതാനും ആയിരം കണക്ഷനുകൾ മാത്രമാണ് നൽകിയത്.",
-                    chartType: "doughnut", chartLabels: ["ലക്ഷ്യം (20 ലക്ഷം)", "നൽകിയത് (~15,000)"],
-                    chartData: [2000000, 15000], chartLabel: "കണക്ഷനുകൾ", chartColors: ['#f1f5f9', '#ef4444']
+        // Balanced Dataset: 3 Successes, 3 Concerns. Multi-lingual structure.
+        const claimsData = [
+            {
+                id: 1,
+                status: "success",
+                icon: "🏆",
+                title: { en: "Poverty Eradication", ml: "ദാരിദ്ര്യ നിർമ്മാർജ്ജനം" },
+                category: { en: "Economy / Welfare", ml: "സാമ്പത്തികം / ക്ഷേമം" },
+                claim: {
+                    en: "Kerala ranks No.1 in NITI Aayog's multidimensional poverty index.",
+                    ml: "നീതി ആയോഗ് ദാരിദ്ര്യ സൂചികയിൽ കേരളം രാജ്യത്ത് ഒന്നാമതാണ്."
                 },
-                {
-                    id: 2, category: "economy", categoryName: "സാമ്പത്തികം", icon: "💸",
-                    title: "സാമ്പത്തിക ഭദ്രത & കടം",
-                    claim: "സംസ്ഥാനത്തിന്റെ സമ്പദ്‌വ്യവസ്ഥ ശക്തമാണ്, ധനക്കമ്മി നിയന്ത്രണത്തിലാണ്.",
-                    stat: "പൊതുകടം 4 ലക്ഷം കോടി കവിഞ്ഞു",
-                    context: "കേരളം വലിയ സാമ്പത്തിക പ്രതിസന്ധിയിലൂടെയാണ് കടന്നുപോകുന്നത്. ശമ്പളവും പെൻഷനും നൽകാൻ പോലും സർക്കാർ പാടുപെടുന്നു. റിസർവ് ബാങ്കിന്റെയും സിഎജിയുടെയും റിപ്പോർട്ടുകൾ പ്രകാരം കേരളം കടുത്ത കടക്കെണിയിലാണ്.",
-                    chartType: "line", chartLabels: ["2016", "2018", "2020", "2022", "2024"],
-                    chartData: [1.8, 2.3, 2.9, 3.5, 4.1], chartLabel: "കടം (ലക്ഷം കോടി)", chartColors: ['#ef4444']
+                stat: { en: "0.55% Poverty Rate", ml: "0.55% ദാരിദ്ര്യം" },
+                context: {
+                    en: "VERIFIED ACHIEVEMENT: According to the NITI Aayog National Multidimensional Poverty Index, Kerala has the lowest poverty rate in India at 0.55%. This reflects the success of robust public welfare systems, healthcare, and decentralization efforts over the years.",
+                    ml: "നേട്ടം: നീതി ആയോഗിന്റെ ദേശീയ മൾട്ടി ഡൈമെൻഷണൽ പോവർട്ടി ഇൻഡക്സ് റിപ്പോർട്ട് പ്രകാരം, ഇന്ത്യയിൽ ഏറ്റവും കുറഞ്ഞ ദാരിദ്ര്യ നിരക്കുള്ള സംസ്ഥാനം കേരളമാണ് (0.55%). ക്ഷേമപദ്ധതികളുടെയും മികച്ച ആരോഗ്യ-വിദ്യാഭ്യാസ സംവിധാനങ്ങളുടെയും ഫലമാണിത്."
                 },
-                {
-                    id: 3, category: "jobs", categoryName: "തൊഴിൽ", icon: "👨‍🎓",
-                    title: "20 ലക്ഷം തൊഴിലവസരങ്ങൾ",
-                    claim: "കെ-ഡിസ്ക് (K-DISC) വഴി 20 ലക്ഷം പേർക്ക് തൊഴിൽ നൽകി/നൽകും.",
-                    stat: "തൊഴിലില്ലായ്മയിൽ മുൻപന്തിയിൽ",
-                    context: "കേന്ദ്ര സർക്കാരിന്റെ പീരിയോഡിക് ലേബർ ഫോഴ്‌സ് സർവേ (PLFS) പ്രകാരം കേരളത്തിലെ യുവജനങ്ങളിലെ തൊഴിലില്ലായ്മ നിരക്ക് (28.7%) ദേശീയ ശരാശരിയേക്കാൾ വളരെ മുകളിലാണ്.",
-                    chartType: "bar", chartLabels: ["ഇന്ത്യ (3.2%)", "കേരളം (7.2%)", "കേരള യുവജനം (28.7%)"],
-                    chartData: [3.2, 7.2, 28.7], chartLabel: "നിരക്ക് (%)", chartColors: ['#94a3b8', '#f59e0b', '#ef4444']
+                chartType: "bar",
+                chartLabels: { en: ["Kerala", "National Average", "Bihar (Highest)"], ml: ["കേരളം", "ഇന്ത്യൻ ശരാശരി", "ബീഹാർ (ഏറ്റവും കൂടുതൽ)"] },
+                chartData: [0.55, 14.96, 33.76],
+                chartLabel: { en: "Poverty Rate (%)", ml: "ദാരിദ്ര്യ നിരക്ക് (%)" },
+                chartColors: ['#10b981', '#94a3b8', '#f43f5e']
+            },
+            {
+                id: 2,
+                status: "concern",
+                icon: "💳",
+                title: { en: "Fiscal Health & Debt", ml: "സാമ്പത്തിക ഭദ്രത & കടം" },
+                category: { en: "Economy", ml: "സാമ്പത്തികം" },
+                claim: {
+                    en: "The state has effectively managed its finances and minimized fiscal deficit.",
+                    ml: "സംസ്ഥാനത്തിന്റെ സമ്പദ്‌വ്യവസ്ഥ ശക്തമാണ്, ധനക്കമ്മി നിയന്ത്രണത്തിലാണ്."
                 },
-                {
-                    id: 4, category: "economy", categoryName: "പൊതുമേഖല", icon: "🚌",
-                    title: "കെ.എസ്.ആർ.ടി.സി ലാഭം",
-                    claim: "പൊതുമേഖലാ സ്ഥാപനങ്ങളെ സംരക്ഷിച്ച് ലാഭത്തിലാക്കി.",
-                    stat: "ശമ്പളം കൊടുക്കാൻ കടമെടുക്കുന്നു",
-                    context: "കെ.എസ്.ആർ.ടി.സിയെ ലാഭത്തിലാക്കും എന്ന് ആവർത്തിക്കാറുണ്ടെങ്കിലും, ജീവനക്കാർക്ക് ശമ്പളം നൽകാൻ പോലും സർക്കാരിന്റെ സഹായം വേണം.",
-                    chartType: "bar", chartLabels: ["വരുമാനം", "ചെലവ്"],
-                    chartData: [180, 240], chartLabel: "തുക (കോടി)", chartColors: ['#3b82f6', '#ef4444']
+                stat: { en: "Debt exceeded ₹4 Lakh Crore", ml: "പൊതുകടം 4 ലക്ഷം കോടി കവിഞ്ഞു" },
+                context: {
+                    en: "AREA OF CONCERN: The RBI and CAG have highlighted Kerala's severe fiscal stress. The outstanding public debt has crossed ₹4 lakh crore. The government frequently struggles with liquidity, relying heavily on borrowings just to cover operational expenses like salaries and pensions.",
+                    ml: "വെല്ലുവിളി: കേരളം വലിയ സാമ്പത്തിക പ്രതിസന്ധിയിലൂടെയാണ് കടന്നുപോകുന്നത്. റിസർവ് ബാങ്കിന്റെയും സിഎജിയുടെയും റിപ്പോർട്ടുകൾ പ്രകാരം പൊതുകടം കുതിച്ചുയരുകയാണ്. ശമ്പളവും പെൻഷനും നൽകാൻ പോലും സർക്കാർ പാടുപെടുന്ന അവസ്ഥയുണ്ട്."
                 },
-                {
-                    id: 5, category: "infra", categoryName: "അടിസ്ഥാന സൗകര്യം", icon: "🚄",
-                    title: "സിൽവർലൈൻ (K-Rail)",
-                    claim: "കേരളത്തിന്റെ ഗതാഗത മുഖച്ഛായ മാറ്റുന്ന സിൽവർലൈൻ നടപ്പിലാക്കും.",
-                    stat: "പദ്ധതി ഉപേക്ഷിച്ച മട്ടാണ്",
-                    context: "ജനകീയ പ്രതിഷേധങ്ങൾക്കും പാരിസ്ഥിതിക ആശങ്കകൾക്കും വഴിവെച്ച പദ്ധതി. കേന്ദ്രാനുമതി ലഭിച്ചിട്ടില്ല. നിലവിൽ പദ്ധതി മരവിപ്പിച്ച അവസ്ഥയിലാണ്.",
-                    chartType: "pie", chartLabels: ["പൂർത്തിയായത് (0%)", "മരവിപ്പിച്ചത് (100%)"],
-                    chartData: [0, 100], chartLabel: "പുരോഗതി", chartColors: ['#22c55e', '#ef4444']
+                chartType: "line",
+                chartLabels: { en: ["2016", "2018", "2020", "2022", "2024 (Est)"], ml: ["2016", "2018", "2020", "2022", "2024 (Est)"] },
+                chartData: [1.8, 2.3, 2.9, 3.5, 4.1],
+                chartLabel: { en: "Public Debt (in Lakh Crores ₹)", ml: "പൊതുകടം (ലക്ഷം കോടി രൂപയിൽ)" },
+                chartColors: ['#f43f5e']
+            },
+            {
+                id: 3,
+                status: "success",
+                icon: "🚀",
+                title: { en: "Startup Ecosystem", ml: "സ്റ്റാർട്ടപ്പ് ഇക്കോസിസ്റ്റം" },
+                category: { en: "Industry & IT", ml: "വ്യവസായം & ഐടി" },
+                claim: {
+                    en: "Created a booming IT ecosystem, raising startups from 300 to over 5000.",
+                    ml: "സംസ്ഥാനത്തെ സ്റ്റാർട്ടപ്പുകളുടെ എണ്ണം 300 ൽ നിന്ന് 5000 ന് മുകളിലായി."
                 },
-                {
-                    id: 6, category: "economy", categoryName: "വ്യവസായം", icon: "🏭",
-                    title: "നിക്ഷേപകരുടെ പറുദീസ",
-                    claim: "കേരളം നിക്ഷേപകരുടെ പറുദീസയായി മാറി, റാങ്കിംഗിൽ മുന്നിൽ.",
-                    stat: "സംരംഭകർ നാടുവിടുന്നു",
-                    context: "രാഷ്ട്രീയ ഇടപെടലുകൾ, ചുവപ്പുനാട (Red tape) എന്നിവ കാരണം പല വലിയ സംരംഭകരും അന്യസംസ്ഥാനങ്ങളിലേക്ക് നിക്ഷേപം മാറ്റുകയാണ്.",
-                    chartType: "bar", chartLabels: ["അവകാശവാദം", "യാഥാർത്ഥ്യം"],
-                    chartData: [90, 40], chartLabel: "സ്കോർ (100 ൽ)", chartColors: ['#10b981', '#ef4444']
-                }
-            ],
-            en: [
-                {
-                    id: 1, category: "infra", categoryName: "Infrastructure", icon: "🌐",
-                    title: "The K-FON Promise",
-                    claim: "Provided free high-speed internet to 20 lakh BPL families.",
-                    stat: "Didn't even hit 1% of the target.",
-                    context: "Announced in 2017 to provide free internet for 2 million poor families. Today, barely a few thousand connections are active. Project execution is comically slow.",
-                    chartType: "doughnut", chartLabels: ["Target (20L)", "Actual (~15K)"],
-                    chartData: [2000000, 15000], chartLabel: "Connections", chartColors: ['#f1f5f9', '#ef4444']
+                stat: { en: "5000+ Registered Startups", ml: "5000+ സ്റ്റാർട്ടപ്പുകൾ" },
+                context: {
+                    en: "VERIFIED ACHIEVEMENT: The Kerala Startup Mission (KSUM) has been highly effective. Through targeted funding, incubation centers, and policy support, the number of registered startups in Kerala has grown exponentially, earning the state recognition in national startup rankings.",
+                    ml: "നേട്ടം: കേരള സ്റ്റാർട്ടപ്പ് മിഷന്റെ (KSUM) മികച്ച പ്രവർത്തനങ്ങളിലൂടെ സ്റ്റാർട്ടപ്പുകളുടെ എണ്ണത്തിൽ വൻ കുതിച്ചുചാട്ടമുണ്ടായി. ഏഷ്യയിലെ മികച്ച സ്റ്റാർട്ടപ്പ് ഇക്കോസിസ്റ്റങ്ങളിലൊന്നായി കേരളം മാറുകയും, ദേശീയ തലത്തിൽ അംഗീകാരം നേടുകയും ചെയ്തു."
                 },
-                {
-                    id: 2, category: "economy", categoryName: "Economy", icon: "💸",
-                    title: "Fiscal Stability & Debt",
-                    claim: "The state's economy is strong, and the fiscal deficit is under control.",
-                    stat: "Public Debt crossed ₹4 Lakh Crore",
-                    context: "Kerala is in a severe debt trap. Borrowing money just to pay interest on old loans is the new norm. CAG has raised multiple red flags.",
-                    chartType: "line", chartLabels: ["2016", "2018", "2020", "2022", "2024"],
-                    chartData: [1.8, 2.3, 2.9, 3.5, 4.1], chartLabel: "Debt (Lakh Cr)", chartColors: ['#ef4444']
+                chartType: "bar",
+                chartLabels: { en: ["2016", "2020", "2024"], ml: ["2016", "2020", "2024"] },
+                chartData: [300, 3000, 5000],
+                chartLabel: { en: "Number of Startups", ml: "രജിസ്റ്റർ ചെയ്ത സ്റ്റാർട്ടപ്പുകൾ" },
+                chartColors: ['#94a3b8', '#38bdf8', '#0ea5e9']
+            },
+            {
+                id: 4,
+                status: "concern",
+                icon: "🎓",
+                title: { en: "Youth Employment", ml: "യുവജന തൊഴിലില്ലായ്മ" },
+                category: { en: "Jobs", ml: "തൊഴിൽ" },
+                claim: {
+                    en: "Generated 20 lakh jobs through K-DISC and infrastructure projects.",
+                    ml: "കെ-ഡിസ്ക് (K-DISC) വഴി 20 ലക്ഷം പേർക്ക് തൊഴിൽ നൽകി."
                 },
-                {
-                    id: 3, category: "jobs", categoryName: "Employment", icon: "👨‍🎓",
-                    title: "20 Lakh New Jobs",
-                    claim: "Created 20 lakh jobs for the youth via K-DISC and other programs.",
-                    stat: "Highest Youth Unemployment",
-                    context: "According to PLFS reports, Kerala's youth unemployment is at 28.7%, far higher than the national average. Migration is the only way out.",
-                    chartType: "bar", chartLabels: ["India (3.2%)", "Kerala (7.2%)", "Kerala Youth (28.7%)"],
-                    chartData: [3.2, 7.2, 28.7], chartLabel: "Rate (%)", chartColors: ['#94a3b8', '#f59e0b', '#ef4444']
+                stat: { en: "28.7% Youth Unemployment", ml: "യുവജനങ്ങളിൽ ഉയർന്ന തൊഴിലില്ലായ്മ" },
+                context: {
+                    en: "AREA OF CONCERN: While overall unemployment might seem stable, youth unemployment (ages 15-29) in Kerala remains critically high according to the Periodic Labour Force Survey (PLFS), hovering nearly three times the national average. This has driven a massive out-migration of educated youth.",
+                    ml: "വെല്ലുവിളി: തൊഴിലവസരങ്ങൾ സൃഷ്ടിച്ചുവെന്ന് അവകാശപ്പെടുമ്പോഴും, കേന്ദ്ര സർക്കാരിന്റെ സർവേ (PLFS) പ്രകാരം കേരളത്തിലെ യുവജനങ്ങളിലെ തൊഴിലില്ലായ്മ നിരക്ക് ദേശീയ ശരാശരിയേക്കാൾ വളരെ കൂടുതലാണ്. ഇത് കാരണം വിദ്യാസമ്പന്നരായ യുവാക്കൾ കൂട്ടത്തോടെ വിദേശത്തേക്ക് ചേക്കേറുന്നു."
                 },
-                {
-                    id: 4, category: "economy", categoryName: "Public Sector", icon: "🚌",
-                    title: "Profitable KSRTC",
-                    claim: "Protected public sector units and turned them profitable.",
-                    stat: "Taking loans just to pay salaries",
-                    context: "KSRTC survives solely on government bailouts. Revenue doesn't even cover the wage bill.",
-                    chartType: "bar", chartLabels: ["Revenue", "Expenses"],
-                    chartData: [180, 240], chartLabel: "Amount (Cr)", chartColors: ['#3b82f6', '#ef4444']
+                chartType: "bar",
+                chartLabels: { en: ["National Avg (All Ages)", "Kerala Avg (All Ages)", "Kerala Youth (15-29)"], ml: ["ഇന്ത്യൻ ശരാശരി", "കേരള ശരാശരി", "കേരളം (യുവജനങ്ങൾ 15-29)"] },
+                chartData: [3.2, 7.2, 28.7],
+                chartLabel: { en: "Unemployment Rate (%)", ml: "തൊഴിലില്ലായ്മ നിരക്ക് (%)" },
+                chartColors: ['#94a3b8', '#818cf8', '#f43f5e']
+            },
+            {
+                id: 5,
+                status: "success",
+                icon: "🏫",
+                title: { en: "Public Education", ml: "പൊതുവിദ്യാഭ്യാസം" },
+                category: { en: "Education", ml: "വിദ്യാഭ്യാസം" },
+                claim: {
+                    en: "Revitalized public schools, attracting 10.5 lakh new students.",
+                    ml: "പൊതുവിദ്യാലയങ്ങളിൽ 10.5 ലക്ഷം പുതിയ വിദ്യാർത്ഥികൾ പ്രവേശനം നേടി."
                 },
-                {
-                    id: 5, category: "infra", categoryName: "Infrastructure", icon: "🚄",
-                    title: "SilverLine (K-Rail)",
-                    claim: "SilverLine will revolutionize Kerala's transportation.",
-                    stat: "Project practically abandoned",
-                    context: "Spurred protests and environmental concerns. Lacked central approval. Boundary stones were just for show.",
-                    chartType: "pie", chartLabels: ["Progress (0%)", "Stalled (100%)"],
-                    chartData: [0, 100], chartLabel: "Status", chartColors: ['#22c55e', '#ef4444']
+                stat: { en: "10.5 Lakh Enrollment Increase", ml: "10.5 ലക്ഷം വർദ്ധനവ്" },
+                context: {
+                    en: "VERIFIED ACHIEVEMENT: The Public Education Rejuvenation Mission successfully modernized school infrastructure, implementing high-tech classrooms. This led to a reverse trend where a significant number of students shifted from private unaided schools to government/aided public schools.",
+                    ml: "നേട്ടം: പൊതുവിദ്യാഭ്യാസ സംരക്ഷണ യജ്ഞത്തിന്റെ ഭാഗമായി സ്കൂളുകളുടെ അടിസ്ഥാന സൗകര്യങ്ങൾ മികച്ചതാക്കി. ഇത് കാരണം സ്വകാര്യ സ്കൂളുകളിൽ നിന്ന് ഉൾപ്പെടെ 10.5 ലക്ഷം കുട്ടികൾ പുതുതായി സർക്കാർ/എയ്ഡഡ് വിദ്യാലയങ്ങളിലേക്ക് പ്രവേശനം നേടി."
                 },
-                {
-                    id: 6, category: "economy", categoryName: "Industry", icon: "🏭",
-                    title: "Investor's Paradise",
-                    claim: "Kerala is investor-friendly, topping ease of doing business.",
-                    stat: "Entrepreneurs are leaving",
-                    context: "Red tape and militant trade unions have forced major investors to move projects to neighboring states.",
-                    chartType: "bar", chartLabels: ["Claim Score", "Reality Score"],
-                    chartData: [90, 40], chartLabel: "Score (out of 100)", chartColors: ['#10b981', '#ef4444']
-                }
-            ]
-        };
+                chartType: "bar",
+                chartLabels: { en: ["Baseline", "New Enrollments (Lakhs)"], ml: ["മുൻപ്", "പുതുതായി ചേർന്നവർ (ലക്ഷത്തിൽ)"] },
+                chartData: [0, 10.5],
+                chartLabel: { en: "Students (in Lakhs)", ml: "വിദ്യാർത്ഥികളുടെ എണ്ണം (ലക്ഷത്തിൽ)" },
+                chartColors: ['#cbd5e1', '#10b981']
+            },
+            {
+                id: 6,
+                status: "concern",
+                icon: "🌐",
+                title: { en: "K-FON Execution", ml: "കെ-ഫോൺ പദ്ധതി" },
+                category: { en: "Infrastructure", ml: "അടിസ്ഥാന സൗകര്യം" },
+                claim: {
+                    en: "Provided free internet access to 20 lakh BPL families.",
+                    ml: "കെ-ഫോൺ വഴി 20 ലക്ഷം ബിപിഎൽ കുടുംബങ്ങൾക്ക് സൗജന്യ ഇന്റർനെറ്റ്."
+                },
+                stat: { en: "Massive Target Shortfall", ml: "ലക്ഷ്യത്തിന്റെ ചെറിയ ശതമാനം മാത്രം" },
+                context: {
+                    en: "AREA OF CONCERN: Declared in 2017 to provide free internet to 20 lakh poor families, K-FON has faced severe delays. While the backbone infrastructure exists, the actual 'last-mile' connectivity to homes is drastically behind schedule, reaching only a fraction of the intended target.",
+                    ml: "വെല്ലുവിളി: 20 ലക്ഷം പാവപ്പെട്ട കുടുംബങ്ങൾക്ക് സൗജന്യ ഇന്റർനെറ്റ് നൽകാനായി പ്രഖ്യാപിച്ച പദ്ധതി വളരെ ഇഴഞ്ഞാണ് നീങ്ങുന്നത്. അടിസ്ഥാന സൗകര്യങ്ങൾ ഒരുക്കിയെങ്കിലും, യഥാർത്ഥത്തിൽ വീടുകളിലേക്ക് കണക്ഷൻ നൽകിയത് വാഗ്ദാനം ചെയ്തതിലും വളരെ കുറവാണ്."
+                },
+                chartType: "doughnut",
+                chartLabels: { en: ["Target BPL Families", "Actual Connections (Approx)"], ml: ["ലക്ഷ്യം വെച്ച ബിപിഎൽ കണക്ഷൻ", "നൽകിയത് (ഏകദേശം)"] },
+                chartData: [2000000, 30000],
+                chartLabel: { en: "K-FON Connections", ml: "കെ-ഫോൺ കണക്ഷനുകൾ" },
+                chartColors: ['#e2e8f0', '#f43f5e']
+            }
+        ];
 
+        let currentLang = 'en';
         let currentChart = null;
+        let currentActiveCardId = null;
 
         function setLanguage(lang) {
             currentLang = lang;
-            document.querySelectorAll('.ml-content').forEach(el => el.style.display = lang === 'ml' ? 'block' : 'none');
-            document.querySelectorAll('.en-content').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+            document.documentElement.lang = lang;
 
-            document.getElementById('btn-ml').className = `px-3 py-1 rounded-md text-xs font-bold transition-all ${lang === 'ml' ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white'}`;
-            document.getElementById('btn-en').className = `px-3 py-1 rounded-md text-xs font-bold transition-all ${lang === 'en' ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white'}`;
+            // Toggle button styles
+            if (lang === 'en') {
+                document.getElementById('btn-en').className = "px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow-sm text-indigo-700";
+                document.getElementById('btn-ml').className = "px-3 py-1.5 text-sm font-semibold rounded-md text-gray-600 hover:text-indigo-600";
+            } else {
+                document.getElementById('btn-ml').className = "px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow-sm text-indigo-700";
+                document.getElementById('btn-en').className = "px-3 py-1.5 text-sm font-semibold rounded-md text-gray-600 hover:text-indigo-600";
+            }
 
-            document.getElementById('empty-state').style.display = 'flex';
-            document.getElementById('detail-view').style.display = 'none';
-            renderList();
+            // Re-render components with new language
+            const activeFilter = document.querySelector('.filter-btn.active-filter').getAttribute('data-filter');
+            renderList(activeFilter);
+
+            if (currentActiveCardId) {
+                // Re-trigger show details for the active card to update translation
+                const cardElements = document.querySelectorAll('.claim-card');
+                let activeElem = null;
+                cardElements.forEach(el => {
+                    if (el.getAttribute('data-id') == currentActiveCardId) activeElem = el;
+                });
+                if (activeElem) showDetails(currentActiveCardId, activeElem, false);
+            }
         }
 
         function renderList(filterCategory = 'all') {
             const listContainer = document.getElementById('claims-list');
             listContainer.innerHTML = '';
-            const currentData = dataSet[currentLang];
 
-            const filteredData = filterCategory === 'all' ? currentData : currentData.filter(item => item.category === filterCategory);
+            const filteredData = filterCategory === 'all'
+                ? claimsData
+                : claimsData.filter(item => item.status === filterCategory);
 
             filteredData.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'claim-card bg-white p-4 mb-3 rounded-lg border border-slate-200 cursor-pointer flex gap-3 items-start shadow-sm';
-                card.onclick = () => showDetails(item.id, card);
-                const realityLabel = currentLang === 'ml' ? 'യാഥാർത്ഥ്യം' : 'Reality';
+                const isSelected = item.id === currentActiveCardId ? 'active-card' : '';
+                card.className = `claim-card bg-white p-3 mb-3 rounded-lg border border-gray-200 cursor-pointer flex gap-3 items-start shadow-sm ${isSelected}`;
+                card.setAttribute('data-id', item.id);
+                card.onclick = () => showDetails(item.id, card, true);
+
+                const badgeClass = item.status === 'success' ? 'success' : 'concern';
+                const badgeText = item.status === 'success'
+                    ? (currentLang === 'en' ? 'Achievement ✅' : 'നേട്ടം ✅')
+                    : (currentLang === 'en' ? 'Concern ⚠️' : 'വെല്ലുവിളി ⚠️');
 
                 card.innerHTML = `
-                    <div class="text-2xl bg-slate-100 p-2 rounded-md">${item.icon}</div>
+                    <div class="text-2xl bg-gray-50 p-2 rounded-md">${item.icon}</div>
                     <div class="w-full">
-                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1 outfit-font">${item.categoryName}</div>
-                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${item.title}</h3>
-                        <p class="text-xs text-red-500 font-bold mt-1 outfit-font bg-red-50 p-1 rounded inline-block">${realityLabel}: ${item.stat}</p>
+                        <div class="flex justify-between items-start mb-1">
+                            <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wide title-font">${item.category[currentLang]}</div>
+                            <span class="status-badge px-2 py-0.5 rounded text-[9px] font-bold uppercase title-font">${badgeText}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-800 leading-tight title-font">${item.title[currentLang]}</h3>
                     </div>
                 `;
                 listContainer.appendChild(card);
             });
         }
 
-        function showDetails(id, cardElement) {
+        function showDetails(id, cardElement, scroll = false) {
+            currentActiveCardId = id;
+
             document.querySelectorAll('.claim-card').forEach(c => c.classList.remove('active-card'));
-            cardElement.classList.add('active-card');
-            const data = dataSet[currentLang].find(item => item.id === id);
+            if (cardElement) cardElement.classList.add('active-card');
+
+            const data = claimsData.find(item => item.id === id);
             if (!data) return;
 
             document.getElementById('empty-state').style.display = 'none';
             document.getElementById('detail-view').style.display = 'flex';
-            document.getElementById('detail-title').innerText = data.title;
-            const sectorLabel = currentLang === 'ml' ? 'വിഭാഗം' : 'Sector';
-            document.getElementById('detail-category-badge').innerHTML = `<span>${data.icon}</span> ${data.categoryName} ${sectorLabel}`;
-            document.getElementById('detail-claim-text').innerText = `"${data.claim}"`;
-            document.getElementById('detail-stat').innerText = data.stat;
-            document.getElementById('detail-context').innerText = data.context;
-            const chartHeadline = currentLang === 'ml' ? 'കണക്കുകൾ സംസാരിക്കട്ടെ' : 'The Data Speaks';
-            document.getElementById('chart-title').innerText = `${data.title} : ${chartHeadline}`;
+
+            const badgeColor = data.status === 'success' ? 'text-emerald-600 bg-emerald-50 border-emerald-200' : 'text-rose-600 bg-rose-50 border-rose-200';
+            const statusText = data.status === 'success'
+                ? (currentLang === 'en' ? 'Verified Achievement ✅' : 'വസ്തുതാപരമായ നേട്ടം ✅')
+                : (currentLang === 'en' ? 'Area of Concern ⚠️' : 'ശ്രദ്ധിക്കേണ്ട വെല്ലുവിളി ⚠️');
+
+            document.getElementById('detail-title').innerText = data.title[currentLang];
+            document.getElementById('detail-category-badge').innerHTML = `
+                <span class="text-xl">${data.icon}</span> 
+                <span class="px-2 py-1 rounded border text-xs font-bold uppercase title-font ${badgeColor}">${statusText}</span>
+            `;
+
+            document.getElementById('detail-claim-text').innerText = `"${data.claim[currentLang]}"`;
+            document.getElementById('detail-stat').innerText = data.stat[currentLang];
+            document.getElementById('detail-context').innerText = data.context[currentLang];
 
             renderChart(data);
+
+            if (scroll && window.innerWidth < 1024) {
+                document.getElementById('detail-view').scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function renderChart(data) {
             const ctx = document.getElementById('analysisChart').getContext('2d');
-            if (currentChart) currentChart.destroy();
+
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
             const isPieOrDoughnut = data.chartType === 'pie' || data.chartType === 'doughnut';
+            const fontFamily = currentLang === 'en' ? 'Inter' : 'Manjari';
+            const titleFontFamily = currentLang === 'en' ? 'Outfit' : 'Meera Inimai';
 
             currentChart = new Chart(ctx, {
                 type: data.chartType,
                 data: {
-                    labels: data.chartLabels,
+                    labels: data.chartLabels[currentLang],
                     datasets: [{
-                        label: data.chartLabel,
+                        label: data.chartLabel[currentLang],
                         data: data.chartData,
-                        backgroundColor: data.chartColors,
+                        backgroundColor: isPieOrDoughnut ? data.chartColors : data.chartColors,
                         borderWidth: isPieOrDoughnut ? 2 : 0,
-                        borderColor: '#f8fafc',
+                        borderColor: '#ffffff',
                         borderRadius: data.chartType === 'bar' ? 4 : 0
                     }]
                 },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: isPieOrDoughnut, position: 'bottom', labels: { font: { family: currentLang === 'ml' ? 'Manjari' : 'Inter' } } },
-                        tooltip: { backgroundColor: '#1e293b', titleFont: { family: 'Outfit', size: 13 }, bodyFont: { family: 'Inter', size: 14, weight: 'bold' }, padding: 12, cornerRadius: 8 }
+                        legend: {
+                            display: isPieOrDoughnut,
+                            position: 'bottom',
+                            labels: { font: { family: fontFamily } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            titleFont: { family: titleFontFamily, size: 13 },
+                            bodyFont: { family: fontFamily, size: 14, weight: 'bold' },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
                     },
                     scales: isPieOrDoughnut ? {} : {
-                        y: { beginAtZero: true, grid: { color: '#e2e8f0', drawBorder: false } },
-                        x: { grid: { display: false }, ticks: { font: { family: 'Inter', weight: '600' }, color: '#475569' } }
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' },
+                            ticks: { font: { family: fontFamily } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { family: fontFamily, weight: '600' },
+                                color: '#64748b',
+                                callback: function (value) {
+                                    const label = this.getLabelForValue(value);
+                                    if (typeof label === 'string' && label.length > 15) {
+                                        return label.match(/.{1,15}(\s|$)/g) || [label];
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
                     }
                 }
             });
         }
 
+        // Filter functionality
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.filter-btn').forEach(b => {
                     b.classList.remove('active-filter');
-                    b.classList.add('bg-white', 'text-slate-600');
+                    b.classList.add('bg-white', 'text-gray-600');
                 });
-                e.target.classList.add('active-filter');
-                e.target.classList.remove('bg-white', 'text-slate-600');
-                renderList(e.target.getAttribute('data-filter'));
-                document.getElementById('empty-state').style.display = 'flex';
-                document.getElementById('detail-view').style.display = 'none';
+
+                // Allow clicking child elements (spans) to trigger parent button style
+                const targetBtn = e.target.closest('button');
+                targetBtn.classList.add('active-filter');
+                targetBtn.classList.remove('bg-white', 'text-gray-600');
+
+                const filterValue = targetBtn.getAttribute('data-filter');
+                renderList(filterValue);
+
+                // Only hide detail view if the currently selected card is filtered out
+                if (currentActiveCardId) {
+                    const data = claimsData.find(item => item.id === currentActiveCardId);
+                    if (filterValue !== 'all' && data.status !== filterValue) {
+                        document.getElementById('empty-state').style.display = 'flex';
+                        document.getElementById('detail-view').style.display = 'none';
+                        currentActiveCardId = null;
+                    }
+                }
             });
         });
 
+        // Initialize
         renderList();
+
+        // Initial setup for language CSS toggle
+        document.documentElement.lang = currentLang;
     </script>
 </body>
 
