@@ -4,23 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>എൽഡിഎഫ് പ്രകടനപത്രിക 2026: അവകാശവാദങ്ങളും വിശകലനവും</title>
+    <title>പ്രകടനപത്രിക: റിയാലിറ്റി ചെക്ക് (Reality Check)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Meera+Inimai&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Meera+Inimai&family=Outfit:wght@400;700;900&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --ml-font: 'Manjari', sans-serif;
+            --en-font: 'Inter', sans-serif;
+        }
 
         body {
-            font-family: 'Manjari', sans-serif;
+            font-family: var(--ml-font);
             background-color: #f8fafc;
             color: #1e293b;
+        }
+
+        .en-content {
+            font-family: var(--en-font);
+            display: none;
+        }
+
+        .ml-content {
+            display: block;
         }
 
         h1,
         h2,
         h3,
-        h4 {
+        h4,
+        .outfit-font {
             font-family: 'Meera Inimai', sans-serif;
+        }
+
+        .en-content h1,
+        .en-content h2,
+        .en-content h3,
+        .en-content h4 {
+            font-family: 'Outfit', sans-serif;
         }
 
         .chart-container {
@@ -29,13 +51,13 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 300px;
+            height: 280px;
             max-height: 350px;
         }
 
         @media (min-width: 768px) {
             .chart-container {
-                height: 350px;
+                height: 320px;
             }
         }
 
@@ -58,49 +80,79 @@
 
         .claim-card {
             transition: all 0.2s ease-in-out;
+            border-left: 4px solid transparent;
         }
 
         .claim-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateX(4px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left-color: #f59e0b;
         }
 
         .active-filter {
-            background-color: #dc2626;
+            background-color: #1e293b;
             color: white;
-            border-color: #dc2626;
+            border-color: #1e293b;
         }
 
         .active-card {
-            border-left: 4px solid #dc2626;
-            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            background-color: #fff1f2;
+        }
+
+        .busted-stamp {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ef4444;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 4px solid #ef4444;
+            padding: 0.25rem 1rem;
+            border-radius: 0.5rem;
+            transform: rotate(15deg);
+            opacity: 0.2;
+            pointer-events: none;
+            letter-spacing: 2px;
+            z-index: 0;
+        }
+
+        .language-toggle {
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
     </style>
 </head>
 
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- Chosen Palette: Red (#dc2626) for LDF accent, Slate/Gray (#f8fafc, #1e293b) for neutral analytical background, White for cards. -->
-    <!-- Application Structure Plan: A two-column interactive dashboard layout. The top section introduces the purpose and shows high-level aggregated metrics. The bottom left provides a filterable, interactive list of specific concrete claims extracted from the manifesto (categories: Economy, Infrastructure, Education, Health, Welfare). Clicking a claim updates the bottom right "Analysis Panel," which displays detailed context, stats, and a dynamic Chart.js visualization to help users quickly verify and understand the data trajectory. This task-oriented structure allows users to explore claims by sector and drill down into data intuitively, bypassing linear document reading. -->
-    <!-- Visualization & Content Choices: Manifesto Claims -> Goal: Compare/Inform -> Presentation: Filterable List + Detail View + Interactive Bar/Line Charts. Justification: Manifestos contain numerous disparate data points. A list allows easy scanning. Charts (Chart.js via Canvas) provide immediate visual context to statistical claims (e.g., comparing previous numbers to current claimed numbers or national averages), making "fact-checking" and comprehension instant. No SVG used; Unicode emojis used for iconography to comply with constraints. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+    <header class="bg-slate-900 shadow-md border-b border-slate-800 sticky top-0 z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center">
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-bold text-red-600 flex items-center gap-2">
-                    <span class="text-3xl">📊</span> എൽഡിഎഫ് പ്രകടനപത്രിക 2026
+            <div class="lang-ml ml-content">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                    <span class="text-3xl">🕵️‍♂️</span> പ്രകടനപത്രിക: <span class="text-red-500">റിയാലിറ്റി
+                        ചെക്ക്</span>
                 </h1>
-                <p class="text-sm text-gray-500 mt-1">അവകാശവാദങ്ങളും, കണക്കുകളും, റാങ്കിംഗുകളും - ഒരു സംവേദനാത്മക
-                    വിശകലനം</p>
+                <p class="text-sm text-slate-400 mt-1">തള്ളുകൾ vs യാഥാർത്ഥ്യം - കണക്കുകൾ കള്ളം പറയില്ലല്ലോ!</p>
             </div>
-            <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 sm:mt-0">
-                <a href="Fact-Checking LDF Government's Manifesto Claims.pdf" target="_blank" rel="noopener noreferrer"
-                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
-                    <span>📄</span> View PDF
-                </a>
-                <div class="bg-red-50 px-4 py-2 rounded-lg border border-red-100 text-sm font-semibold text-red-800">
-                    LDF 3.0 LOADING - FACT CHECK DASHBOARD
+            <div class="lang-en en-content">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2 outfit-font">
+                    <span class="text-3xl">🕵️‍♂️</span> Manifesto: <span class="text-red-500">Reality Check</span>
+                </h1>
+                <p class="text-sm text-slate-400 mt-1">Tall tales vs. Actual reality — Numbers don't lie, babes!</p>
+            </div>
+
+            <div class="flex items-center gap-4 mt-4 sm:mt-0">
+                <div class="bg-slate-800 p-1 rounded-lg flex border border-slate-700">
+                    <button onclick="setLanguage('ml')" id="btn-ml"
+                        class="px-3 py-1 rounded-md text-xs font-bold transition-all bg-red-600 text-white">മലയാളം</button>
+                    <button onclick="setLanguage('en')" id="btn-en"
+                        class="px-3 py-1 rounded-md text-xs font-bold transition-all text-slate-400 hover:text-white">English</button>
+                </div>
+                <div
+                    class="bg-red-500/10 px-4 py-2 rounded-lg border border-red-500/30 text-sm font-semibold text-red-400 animate-pulse outfit-font">
+                    FACT-CHECK MODE: ON 🚨
                 </div>
             </div>
         </div>
@@ -109,267 +161,318 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex flex-col gap-6">
 
         <section class="mb-2">
-            <p class="text-gray-700 leading-relaxed bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                ഈ ഡാഷ്ബോർഡ് 2026 ലെ എൽഡിഎഫ് പ്രകടനപത്രികയിലെ പ്രധാന അവകാശവാദങ്ങളെ (Claims), സ്ഥിതിവിവരക്കണക്കുകൾ,
-                ബഡ്ജറ്റ് വിവരങ്ങൾ, വികസന നേട്ടങ്ങൾ എന്നിവയുടെ അടിസ്ഥാനത്തിൽ തരംതിരിച്ച് വിശകലനം ചെയ്യാൻ ഉപയോക്താക്കളെ
-                സഹായിക്കുന്നു. താഴെ നൽകിയിരിക്കുന്ന വിഭാഗങ്ങളിലൂടെ നിങ്ങൾക്ക് ഓരോ അവകാശവാദത്തിന്റെയും യാഥാർത്ഥ്യവും
-                കണക്കുകളും പരിശോധിക്കാവുന്നതാണ്.
-            </p>
+            <div class="ml-content">
+                <p
+                    class="text-slate-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-slate-200 text-lg">
+                    അടിപൊളി വാഗ്ദാനങ്ങളും ഗ്രാഫുകളും കണ്ട് മയങ്ങാൻ നമ്മൾ തയ്യാറല്ല! ഈ ഡാഷ്ബോർഡ് ലക്ഷ്യമിടുന്നത്
+                    പ്രകടനപത്രികയിലെ <strong class="text-red-600">പൊള്ളയായ അവകാശവാദങ്ങളെയും, യാഥാർത്ഥ്യവുമായി
+                        ബന്ധമില്ലാത്ത
+                        കണക്കുകളെയും</strong> പൊളിച്ചടുക്കാനാണ്. കടക്കെണി, തൊഴിലില്ലായ്മ, എങ്ങുമെത്താത്ത സ്വപ്നപദ്ധതികൾ
+                    എന്നിവയുടെ യഥാർത്ഥ ചിത്രം താഴെ പരിശോധിക്കാം.
+                </p>
+            </div>
+            <div class="en-content">
+                <p
+                    class="text-slate-700 leading-relaxed bg-white p-5 rounded-xl shadow-sm border border-slate-200 text-lg">
+                    We're not getting hypnotized by flashy PR and pretty graphs today! This dashboard is designed to
+                    rigorously cross-examine the <strong class="text-red-600">empty claims, exaggerated statistics, and
+                        ghost projects</strong> in the manifesto. Let's look at the actual ground reality of the state's
+                    debt trap, unemployment crisis, and stalled mega-projects. Bring the receipts!
+                </p>
+            </div>
         </section>
 
+        <!-- High-level Reality Check Stats -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                <div class="text-3xl mb-2">🏠</div>
-                <div class="text-2xl font-bold text-gray-800" id="stat-houses">4,00,000+</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide mt-1">ലൈഫ് ഭവനങ്ങൾ</div>
+            <div class="bg-red-50 p-5 rounded-xl border border-red-100 text-center">
+                <div class="text-3xl mb-2">📉</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">₹4 ലക്ഷം കോടി+</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font en-content">₹4 Lakh Crore+</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">സംസ്ഥാന പൊതുകടം</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">State Public Debt</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                <div class="text-3xl mb-2">🏆</div>
-                <div class="text-2xl font-bold text-gray-800" id="stat-poverty">No. 1</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide mt-1">ദാരിദ്ര്യ നിർമ്മാർജ്ജനം</div>
+            <div class="bg-amber-50 p-5 rounded-xl border border-amber-100 text-center">
+                <div class="text-3xl mb-2">🤷‍♂️</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">~ 28.7%</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font en-content">~ 28.7%</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">തൊഴിലില്ലായ്മ (യുവജനങ്ങൾ)</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">Youth Unemployment</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                <div class="text-3xl mb-2">🎓</div>
-                <div class="text-2xl font-bold text-gray-800" id="stat-edu">10.5 ലക്ഷം</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide mt-1">പുതിയ വിദ്യാർത്ഥികൾ</div>
+            <div class="bg-orange-50 p-5 rounded-xl border border-orange-100 text-center">
+                <div class="text-3xl mb-2">🐌</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">ഇഴയുന്നു</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font en-content">Crawling</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">വൻകിട പദ്ധതികൾ (KFON)</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">Mega Projects (KFON)</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                <div class="text-3xl mb-2">🚀</div>
-                <div class="text-2xl font-bold text-gray-800" id="stat-startup">5,000+</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide mt-1">പുതിയ സ്റ്റാർട്ടപ്പുകൾ</div>
+            <div class="bg-slate-100 p-5 rounded-xl border border-slate-200 text-center">
+                <div class="text-3xl mb-2">👻</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font ml-content">0%</div>
+                <div class="text-xl font-bold text-slate-800 outfit-font en-content">0%</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 ml-content">കെ-റെയിൽ പുരോഗതി</div>
+                <div class="text-xs text-slate-500 font-bold uppercase mt-1 en-content">K-Rail Progress</div>
             </div>
         </section>
 
-        <section class="flex flex-col lg:flex-row gap-6 h-[800px] lg:h-[600px]">
+        <section class="flex flex-col lg:flex-row gap-6 h-[850px] lg:h-[650px]">
 
+            <!-- Left Sidebar -->
             <div
-                class="w-full lg:w-1/3 flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <div class="p-4 border-b border-gray-200 bg-gray-50">
-                    <h2 class="text-lg font-bold text-gray-800 mb-3">വിഭാഗങ്ങൾ (Categories)</h2>
+                class="w-full lg:w-1/3 flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 border-b border-slate-200 bg-slate-50">
+                    <h2 class="text-lg font-bold text-slate-800 mb-3 outfit-font ml-content">പരിശോധിക്കേണ്ടവ 🔍</h2>
+                    <h2 class="text-lg font-bold text-slate-800 mb-3 outfit-font en-content">Claims to Interrogate 🔍
+                    </h2>
                     <div class="flex flex-wrap gap-2" id="filter-container">
-                        <button class="px-3 py-1.5 rounded-full text-xs font-semibold border filter-btn active-filter"
-                            data-filter="all">എല്ലാം</button>
+                        <button class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn active-filter"
+                            data-filter="all">
+                            <span class="ml-content">എല്ലാം</span><span class="en-content">All</span>
+                        </button>
                         <button
-                            class="px-3 py-1.5 rounded-full text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                            data-filter="economy">സാമ്പത്തികം</button>
+                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
+                            data-filter="economy">
+                            <span class="ml-content">സമ്പദ്‌വ്യവസ്ഥ</span><span class="en-content">Economy</span>
+                        </button>
                         <button
-                            class="px-3 py-1.5 rounded-full text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                            data-filter="infra">അടിസ്ഥാന സൗകര്യം</button>
+                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
+                            data-filter="infra">
+                            <span class="ml-content">പദ്ധതികൾ</span><span class="en-content">Projects</span>
+                        </button>
                         <button
-                            class="px-3 py-1.5 rounded-full text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                            data-filter="eduhealth">വിദ്യാഭ്യാസം & ആരോഗ്യം</button>
-                        <button
-                            class="px-3 py-1.5 rounded-full text-xs font-semibold border filter-btn bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                            data-filter="welfare">ക്ഷേമം</button>
+                            class="px-3 py-1.5 rounded-md text-xs font-semibold border filter-btn bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
+                            data-filter="jobs">
+                            <span class="ml-content">തൊഴിൽ</span><span class="en-content">Jobs</span>
+                        </button>
                     </div>
                 </div>
-                <div class="overflow-y-auto custom-scrollbar p-2 flex-grow bg-gray-50" id="claims-list">
-                </div>
+                <div class="overflow-y-auto custom-scrollbar p-2 flex-grow bg-slate-50" id="claims-list"></div>
             </div>
 
+            <!-- Right Panel -->
             <div
-                class="w-full lg:w-2/3 h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar flex flex-col">
-                <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-red-50 to-white" id="detail-header">
-                    <h2 class="text-2xl font-bold text-gray-800" id="detail-title">വിശകലനം കാണാൻ ഒരു അവകാശവാദം
-                        തിരഞ്ഞെടുക്കുക</h2>
-                    <div class="flex items-center gap-2 mt-2 text-sm font-medium text-red-600"
-                        id="detail-category-badge">
-                        <span>👈</span> ഇടതുവശത്തുള്ള ലിസ്റ്റിൽ നിന്ന് തിരഞ്ഞെടുക്കുക
+                class="w-full lg:w-2/3 h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-y-auto custom-scrollbar flex flex-col relative">
+                <div id="detail-view" style="display: none;" class="flex flex-col h-full relative">
+                    <div class="busted-stamp">FACT CHECKED</div>
+                    <div class="p-6 border-b border-slate-200 bg-slate-900 text-white relative z-10">
+                        <div class="flex items-center gap-2 text-sm font-medium text-red-400 mb-1"
+                            id="detail-category-badge"></div>
+                        <h2 class="text-2xl font-bold outfit-font" id="detail-title"></h2>
                     </div>
-                </div>
 
-                <div class="p-6 flex-grow flex flex-col gap-6" id="detail-content" style="display: none;">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
-                            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">പ്രകടനപത്രികയിലെ
-                                അവകാശവാദം</h3>
-                            <p class="text-gray-800 text-lg font-semibold" id="detail-claim-text"></p>
+                    <div class="p-6 flex-grow flex flex-col gap-6 relative z-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-slate-400"></div>
+                                <h3
+                                    class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2 outfit-font">
+                                    <span>🧢</span> <span class="ml-content">അവകാശവാദം (The Claim)</span><span
+                                        class="en-content">The Claim</span>
+                                </h3>
+                                <p class="text-slate-800 text-md font-semibold italic" id="detail-claim-text"></p>
+                            </div>
+                            <div class="bg-red-50 p-5 rounded-lg border border-red-200 relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                                <h3
+                                    class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2 flex items-center gap-2 outfit-font">
+                                    <span>💥</span> <span class="ml-content">യാഥാർത്ഥ്യം (The Reality)</span><span
+                                        class="en-content">The Reality</span>
+                                </h3>
+                                <div class="text-xl font-bold text-red-700 outfit-font" id="detail-stat"></div>
+                            </div>
                         </div>
-                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
-                            <h3 class="text-xs font-bold text-blue-500 uppercase tracking-wider mb-2">സ്ഥിതിവിവരക്കണക്ക്
-                                (Fact/Stat)</h3>
-                            <div class="text-3xl font-bold text-blue-700" id="detail-stat"></div>
+
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                            <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2 outfit-font">
+                                <span>🕵️‍♂️</span> <span class="ml-content">വസ്തുതാപരിശോധന (Analysis)</span><span
+                                    class="en-content">Tea Spilled (Analysis)</span>
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-sm" id="detail-context"></p>
+                        </div>
+
+                        <div class="mt-auto w-full pb-4">
+                            <h3 class="text-sm font-bold text-slate-800 mb-4 text-center outfit-font" id="chart-title">
+                            </h3>
+                            <div
+                                class="chart-container bg-slate-50 rounded-lg p-3 border border-slate-200 shadow-inner">
+                                <canvas id="analysisChart"></canvas>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-                        <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2"><span>🔍</span>
-                            വിശകലനവും പശ്ചാത്തലവും</h3>
-                        <p class="text-gray-600 leading-relaxed text-sm" id="detail-context"></p>
-                    </div>
-
-                    <div class="mt-auto w-full">
-                        <h3 class="text-sm font-bold text-gray-800 mb-4 text-center" id="chart-title">ഡാറ്റാ പ്രതിനിധാനം
-                        </h3>
-                        <div class="chart-container bg-gray-50 rounded-lg p-2 border border-gray-100">
-                            <canvas id="analysisChart"></canvas>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div id="empty-state"
-                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-gray-400 h-full">
-                    <div class="text-6xl mb-4">📄</div>
-                    <p class="text-lg">കൂടുതൽ വിവരങ്ങൾ അറിയാൻ കാർഡുകളിൽ ക്ലിക്ക് ചെയ്യുക.</p>
+                    class="flex-grow flex flex-col items-center justify-center p-8 text-center text-slate-400 h-full">
+                    <div class="text-6xl mb-4">🤡</div>
+                    <h3 class="text-xl font-bold text-slate-600 mb-2 outfit-font ml-content">തള്ളുകൾ പൊളിച്ചടുക്കാം!
+                    </h3>
+                    <h3 class="text-xl font-bold text-slate-600 mb-2 outfit-font en-content">Let's bust these myths!
+                    </h3>
+                    <p class="text-md ml-content">ഇടതുവശത്തുള്ള കാർഡുകളിൽ ക്ലിക്ക് ചെയ്ത് ഓരോ വാഗ്ദാനത്തിന്റെയും യഥാർത്ഥ
+                        അവസ്ഥ മനസ്സിലാക്കുക.</p>
+                    <p class="text-md en-content">Click on the cards on the left to reveal the brutal truth behind the
+                        manifesto's promises.</p>
                 </div>
-
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-gray-400 py-6 text-center text-sm mt-auto">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>Interactive Fact-Check Dashboard | LDF Manifesto 2026 Analysis | UI generated dynamically.</p>
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 outfit-font tracking-wide text-xs uppercase">
+            Reality Check Dashboard | Manifesto Fact-Check | Data based on CAG & RBI reports.
         </div>
     </footer>
 
     <script>
-        const claimsData = [
-            {
-                id: 1,
-                category: "economy",
-                categoryName: "സാമ്പത്തികം",
-                icon: "📈",
-                title: "നീതി ആയോഗ് ദാരിദ്ര്യ സൂചിക",
-                claim: "നീതി ആയോഗ് ദാരിദ്ര്യ സൂചികയിൽ കേരളം രാജ്യത്ത് ഒന്നാമതാണ്.",
-                stat: "0.55% ദാരിദ്ര്യം",
-                context: "നീതി ആയോഗിന്റെ ദേശീയ മൾട്ടി ഡൈമെൻഷണൽ പോവർട്ടി ഇൻഡക്സ് (MPI) റിപ്പോർട്ട് പ്രകാരം, ഇന്ത്യയിൽ ഏറ്റവും കുറഞ്ഞ ദാരിദ്ര്യ നിരക്കുള്ള സംസ്ഥാനം കേരളമാണ് (0.55%). ഇത് സർക്കാരിന്റെ ക്ഷേമപദ്ധതികളുടെ നേരിട്ടുള്ള ഫലമായാണ് പ്രകടനപത്രിക ചൂണ്ടിക്കാണിക്കുന്നത്.",
-                chartType: "bar",
-                chartLabels: ["ഇന്ത്യൻ ശരാശരി", "കേരളം (2015-16)", "കേരളം (നിലവിൽ)"],
-                chartData: [14.96, 0.70, 0.55],
-                chartLabel: "ദാരിദ്ര്യ നിരക്ക് (%)",
-                chartColors: ['#94a3b8', '#f87171', '#ef4444']
-            },
-            {
-                id: 2,
-                category: "infra",
-                categoryName: "അടിസ്ഥാന സൗകര്യം",
-                icon: "🏠",
-                title: "ലൈഫ് മിഷൻ ഭവനങ്ങൾ",
-                claim: "ലൈഫ് മിഷൻ വഴി സംസ്ഥാനത്ത് 4 ലക്ഷത്തിലധികം വീടുകൾ പൂർത്തീകരിച്ചു.",
-                stat: "4,00,000+ വീടുകൾ",
-                context: "ഭവനരഹിതർക്കായി ആരംഭിച്ച ലൈഫ് മിഷൻ പദ്ധതിയിലൂടെ ഇതുവരെ നാല് ലക്ഷം വീടുകൾ നിർമ്മിച്ചു നൽകി എന്നത് സർക്കാരിന്റെ പ്രധാന നേട്ടമായി ഉയർത്തിക്കാട്ടുന്നു. സാമ്പത്തിക ബുദ്ധിമുട്ടുകൾക്കിടയിലും പദ്ധതി തടസ്സമില്ലാതെ മുന്നോട്ട് പോയി.",
-                chartType: "line",
-                chartLabels: ["ഘട്ടം 1", "ഘട്ടം 2", "ഘട്ടം 3", "നിലവിൽ"],
-                chartData: [100000, 200000, 320000, 400000],
-                chartLabel: "പൂർത്തീകരിച്ച വീടുകളുടെ എണ്ണം",
-                chartColors: ['#ef4444', '#ef4444', '#ef4444', '#dc2626']
-            },
-            {
-                id: 3,
-                category: "eduhealth",
-                categoryName: "വിദ്യാഭ്യാസം",
-                icon: "🏫",
-                title: "പൊതുവിദ്യാഭ്യാസ സംരക്ഷണം",
-                claim: "പൊതുവിദ്യാലയങ്ങളിൽ 10.5 ലക്ഷം പുതിയ വിദ്യാർത്ഥികൾ പ്രവേശനം നേടി.",
-                stat: "10.5 ലക്ഷം വർദ്ധനവ്",
-                context: "പൊതുവിദ്യാഭ്യാസ സംരക്ഷണ യജ്ഞത്തിന്റെ ഭാഗമായി സ്കൂളുകളുടെ അടിസ്ഥാന സൗകര്യങ്ങൾ ഹൈടെക് ആക്കിയതിന്റെ ഫലമായി കൊഴിഞ്ഞുപോക്ക് കുറയുകയും, സ്വകാര്യ സ്കൂളുകളിൽ നിന്ന് ഉൾപ്പെടെ 10.5 ലക്ഷം കുട്ടികൾ പൊതുവിദ്യാലയങ്ങളിലേക്ക് എത്തുകയും ചെയ്തു.",
-                chartType: "bar",
-                chartLabels: ["2016 ന് മുൻപ്", "പുതുതായി ചേർന്നവർ (ലക്ഷത്തിൽ)"],
-                chartData: [0, 10.5],
-                chartLabel: "വിദ്യാർത്ഥികളുടെ എണ്ണം (ലക്ഷത്തിൽ)",
-                chartColors: ['#cbd5e1', '#3b82f6']
-            },
-            {
-                id: 4,
-                category: "economy",
-                categoryName: "വ്യവസായം & ഐടി",
-                icon: "🚀",
-                title: "സ്റ്റാർട്ടപ്പ് ഇക്കോസിസ്റ്റം",
-                claim: "സംസ്ഥാനത്തെ സ്റ്റാർട്ടപ്പുകളുടെ എണ്ണം 300 ൽ നിന്ന് 5000 ന് മുകളിലായി.",
-                stat: "5000+ സ്റ്റാർട്ടപ്പുകൾ",
-                context: "കേരള സ്റ്റാർട്ടപ്പ് മിഷന്റെ (KSUM) മികച്ച പ്രവർത്തനങ്ങളിലൂടെയും സർക്കാർ ഫണ്ടിംഗിലൂടെയും സ്റ്റാർട്ടപ്പുകളുടെ എണ്ണത്തിൽ വൻ കുതിച്ചുചാട്ടമുണ്ടായി. ഏഷ്യയിലെ മികച്ച സ്റ്റാർട്ടപ്പ് ഇക്കോസിസ്റ്റങ്ങളിലൊന്നായി കേരളം മാറി.",
-                chartType: "bar",
-                chartLabels: ["2016", "2021", "നിലവിൽ (2024/25)"],
-                chartData: [300, 3000, 5000],
-                chartLabel: "രജിസ്റ്റർ ചെയ്ത സ്റ്റാർട്ടപ്പുകൾ",
-                chartColors: ['#94a3b8', '#f87171', '#ef4444']
-            },
-            {
-                id: 5,
-                category: "welfare",
-                categoryName: "ക്ഷേമം",
-                icon: "🤝",
-                title: "ക്ഷേമപെൻഷൻ വിതരണം",
-                claim: "60 ലക്ഷത്തിലധികം ആളുകൾക്ക് 1600 രൂപ നിരക്കിൽ ക്ഷേമപെൻഷൻ നൽകുന്നു.",
-                stat: "60 ലക്ഷം ഗുണഭോക്താക്കൾ",
-                context: "യുഡിഎഫ് സർക്കാരിന്റെ കാലത്ത് 600 രൂപയായിരുന്ന പെൻഷൻ 1600 രൂപയായി വർദ്ധിപ്പിക്കുകയും, ഗുണഭോക്താക്കളുടെ എണ്ണം 60 ലക്ഷമായി ഉയർത്തുകയും ചെയ്തു. പെൻഷൻ കുടിശ്ശികയില്ലാതെ വിതരണം ചെയ്യുന്നത് ഗ്രാമീണ സമ്പദ്‌വ്യവസ്ഥയെ സഹായിച്ചു.",
-                chartType: "bar",
-                chartLabels: ["യുഡിഎഫ് കാലം (തുക)", "എൽഡിഎഫ് കാലം (തുക)"],
-                chartData: [600, 1600],
-                chartLabel: "പെൻഷൻ തുക (രൂപയിൽ)",
-                chartColors: ['#94a3b8', '#dc2626']
-            },
-            {
-                id: 6,
-                category: "infra",
-                categoryName: "അടിസ്ഥാന സൗകര്യം",
-                icon: "🌐",
-                title: "കെ-ഫോൺ (K-FON)",
-                claim: "കെ-ഫോൺ വഴി സാമ്പത്തികമായി പിന്നോക്കം നിൽക്കുന്നവർക്ക് സൗജന്യ ഇന്റർനെറ്റ്.",
-                stat: "സൗജന്യ ഇന്റർനെറ്റ്",
-                context: "ഇന്റർനെറ്റ് പൗരാവകാശമായി പ്രഖ്യാപിച്ച ആദ്യ സംസ്ഥാനമാണ് കേരളം. കെ-ഫോൺ പദ്ധതി വഴി സർക്കാർ ഓഫീസുകളിലും ബിപിഎൽ കുടുംബങ്ങളിലും അതിവേഗ ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമാക്കുന്നു.",
-                chartType: "doughnut",
-                chartLabels: ["ലക്ഷ്യമിടുന്ന ബിപിഎൽ കുടുംബങ്ങൾ", "സർക്കാർ ഓഫീസുകൾ"],
-                chartData: [2000000, 30000],
-                chartLabel: "കെ-ഫോൺ വ്യാപ്തി",
-                chartColors: ['#ef4444', '#3b82f6']
-            },
-            {
-                id: 7,
-                category: "eduhealth",
-                categoryName: "ആരോഗ്യം",
-                icon: "🏥",
-                title: "ആർദ്രം മിഷൻ & നീതി ആയോഗ്",
-                claim: "നീതി ആയോഗ് ആരോഗ്യ സൂചികയിൽ കേരളം ഒന്നാം സ്ഥാനത്ത് തുടരുന്നു.",
-                stat: "തുടർച്ചയായി 1-ാം സ്ഥാനം",
-                context: "ആർദ്രം മിഷനിലൂടെ പ്രാഥമിക ആരോഗ്യ കേന്ദ്രങ്ങളെ കുടുംബാരോഗ്യ കേന്ദ്രങ്ങളാക്കി മാറ്റി. കോവിഡ് പ്രതിരോധത്തിലുൾപ്പെടെ പൊതുജനാരോഗ്യ മേഖലയിലെ മികവ് കാരണം നീതി ആയോഗ് ആരോഗ്യ സൂചികയിൽ കേരളം രാജ്യത്ത് ഒന്നാമതാണ്.",
-                chartType: "bar",
-                chartLabels: ["കേരളം സ്കോർ", "തമിഴ്നാട് സ്കോർ", "ദേശീയ ശരാശരി"],
-                chartData: [82.2, 72.4, 50.0],
-                chartLabel: "നീതി ആയോഗ് ഹെൽത്ത് ഇൻഡക്സ് സ്കോർ",
-                chartColors: ['#dc2626', '#f87171', '#94a3b8']
-            },
-            {
-                id: 8,
-                category: "infra",
-                categoryName: "അടിസ്ഥാന സൗകര്യം",
-                icon: "🛣️",
-                title: "ദേശീയപാതാ വികസനം",
-                claim: "ദേശീയപാതാ സ്ഥലമേറ്റെടുപ്പിനായി 25% സംസ്ഥാന വിഹിതം നൽകി.",
-                stat: "₹5,580 കോടി വിഹിതം",
-                context: "ദേശീയപാത 66 ന്റെ വികസനത്തിനായി സ്ഥലമേറ്റെടുക്കുന്നതിന് രാജ്യത്ത് മറ്റൊരു സംസ്ഥാനവും നൽകാത്ത രീതിയിൽ 25% തുക (ഏകദേശം 5580 കോടി രൂപ) സംസ്ഥാന സർക്കാർ കിഫ്ബി വഴി നൽകി. ഇതോടെ മുടങ്ങിക്കിടന്ന വികസനം യാഥാർത്ഥ്യമായി.",
-                chartType: "pie",
-                chartLabels: ["കേന്ദ്ര വിഹിതം (75%)", "സംസ്ഥാന വിഹിതം (25%)"],
-                chartData: [75, 25],
-                chartLabel: "സ്ഥലമേറ്റെടുക്കൽ ചെലവ് വിഹിതം (%)",
-                chartColors: ['#94a3b8', '#dc2626']
-            }
-        ];
+        let currentLang = 'ml';
+        const dataSet = {
+            ml: [
+                {
+                    id: 1, category: "infra", categoryName: "അടിസ്ഥാന സൗകര്യം", icon: "🌐",
+                    title: "കെ-ഫോൺ (K-FON) വാഗ്ദാനം",
+                    claim: "20 ലക്ഷം ബിപിഎൽ കുടുംബങ്ങൾക്ക് സൗജന്യ അതിവേഗ ഇന്റർനെറ്റ് നൽകി.",
+                    stat: "ലക്ഷ്യത്തിന്റെ 1% പോലും എത്തിയില്ല",
+                    context: "2017-ൽ പ്രഖ്യാപിച്ച പദ്ധതി. 20 ലക്ഷം പാവപ്പെട്ട കുടുംബങ്ങൾക്ക് സൗജന്യ ഇന്റർനെറ്റ് എന്നായിരുന്നു വാഗ്ദാനം. എന്നാൽ വർഷങ്ങൾ കഴിഞ്ഞിട്ടും വെറും ഏതാനും ആയിരം കണക്ഷനുകൾ മാത്രമാണ് നൽകിയത്.",
+                    chartType: "doughnut", chartLabels: ["ലക്ഷ്യം (20 ലക്ഷം)", "നൽകിയത് (~15,000)"],
+                    chartData: [2000000, 15000], chartLabel: "കണക്ഷനുകൾ", chartColors: ['#f1f5f9', '#ef4444']
+                },
+                {
+                    id: 2, category: "economy", categoryName: "സാമ്പത്തികം", icon: "💸",
+                    title: "സാമ്പത്തിക ഭദ്രത & കടം",
+                    claim: "സംസ്ഥാനത്തിന്റെ സമ്പദ്‌വ്യവസ്ഥ ശക്തമാണ്, ധനക്കമ്മി നിയന്ത്രണത്തിലാണ്.",
+                    stat: "പൊതുകടം 4 ലക്ഷം കോടി കവിഞ്ഞു",
+                    context: "കേരളം വലിയ സാമ്പത്തിക പ്രതിസന്ധിയിലൂടെയാണ് കടന്നുപോകുന്നത്. ശമ്പളവും പെൻഷനും നൽകാൻ പോലും സർക്കാർ പാടുപെടുന്നു. റിസർവ് ബാങ്കിന്റെയും സിഎജിയുടെയും റിപ്പോർട്ടുകൾ പ്രകാരം കേരളം കടുത്ത കടക്കെണിയിലാണ്.",
+                    chartType: "line", chartLabels: ["2016", "2018", "2020", "2022", "2024"],
+                    chartData: [1.8, 2.3, 2.9, 3.5, 4.1], chartLabel: "കടം (ലക്ഷം കോടി)", chartColors: ['#ef4444']
+                },
+                {
+                    id: 3, category: "jobs", categoryName: "തൊഴിൽ", icon: "👨‍🎓",
+                    title: "20 ലക്ഷം തൊഴിലവസരങ്ങൾ",
+                    claim: "കെ-ഡിസ്ക് (K-DISC) വഴി 20 ലക്ഷം പേർക്ക് തൊഴിൽ നൽകി/നൽകും.",
+                    stat: "തൊഴിലില്ലായ്മയിൽ മുൻപന്തിയിൽ",
+                    context: "കേന്ദ്ര സർക്കാരിന്റെ പീരിയോഡിക് ലേബർ ഫോഴ്‌സ് സർവേ (PLFS) പ്രകാരം കേരളത്തിലെ യുവജനങ്ങളിലെ തൊഴിലില്ലായ്മ നിരക്ക് (28.7%) ദേശീയ ശരാശരിയേക്കാൾ വളരെ മുകളിലാണ്.",
+                    chartType: "bar", chartLabels: ["ഇന്ത്യ (3.2%)", "കേരളം (7.2%)", "കേരള യുവജനം (28.7%)"],
+                    chartData: [3.2, 7.2, 28.7], chartLabel: "നിരക്ക് (%)", chartColors: ['#94a3b8', '#f59e0b', '#ef4444']
+                },
+                {
+                    id: 4, category: "economy", categoryName: "പൊതുമേഖല", icon: "🚌",
+                    title: "കെ.എസ്.ആർ.ടി.സി ലാഭം",
+                    claim: "പൊതുമേഖലാ സ്ഥാപനങ്ങളെ സംരക്ഷിച്ച് ലാഭത്തിലാക്കി.",
+                    stat: "ശമ്പളം കൊടുക്കാൻ കടമെടുക്കുന്നു",
+                    context: "കെ.എസ്.ആർ.ടി.സിയെ ലാഭത്തിലാക്കും എന്ന് ആവർത്തിക്കാറുണ്ടെങ്കിലും, ജീവനക്കാർക്ക് ശമ്പളം നൽകാൻ പോലും സർക്കാരിന്റെ സഹായം വേണം.",
+                    chartType: "bar", chartLabels: ["വരുമാനം", "ചെലവ്"],
+                    chartData: [180, 240], chartLabel: "തുക (കോടി)", chartColors: ['#3b82f6', '#ef4444']
+                },
+                {
+                    id: 5, category: "infra", categoryName: "അടിസ്ഥാന സൗകര്യം", icon: "🚄",
+                    title: "സിൽവർലൈൻ (K-Rail)",
+                    claim: "കേരളത്തിന്റെ ഗതാഗത മുഖച്ഛായ മാറ്റുന്ന സിൽവർലൈൻ നടപ്പിലാക്കും.",
+                    stat: "പദ്ധതി ഉപേക്ഷിച്ച മട്ടാണ്",
+                    context: "ജനകീയ പ്രതിഷേധങ്ങൾക്കും പാരിസ്ഥിതിക ആശങ്കകൾക്കും വഴിവെച്ച പദ്ധതി. കേന്ദ്രാനുമതി ലഭിച്ചിട്ടില്ല. നിലവിൽ പദ്ധതി മരവിപ്പിച്ച അവസ്ഥയിലാണ്.",
+                    chartType: "pie", chartLabels: ["പൂർത്തിയായത് (0%)", "മരവിപ്പിച്ചത് (100%)"],
+                    chartData: [0, 100], chartLabel: "പുരോഗതി", chartColors: ['#22c55e', '#ef4444']
+                },
+                {
+                    id: 6, category: "economy", categoryName: "വ്യവസായം", icon: "🏭",
+                    title: "നിക്ഷേപകരുടെ പറുദീസ",
+                    claim: "കേരളം നിക്ഷേപകരുടെ പറുദീസയായി മാറി, റാങ്കിംഗിൽ മുന്നിൽ.",
+                    stat: "സംരംഭകർ നാടുവിടുന്നു",
+                    context: "രാഷ്ട്രീയ ഇടപെടലുകൾ, ചുവപ്പുനാട (Red tape) എന്നിവ കാരണം പല വലിയ സംരംഭകരും അന്യസംസ്ഥാനങ്ങളിലേക്ക് നിക്ഷേപം മാറ്റുകയാണ്.",
+                    chartType: "bar", chartLabels: ["അവകാശവാദം", "യാഥാർത്ഥ്യം"],
+                    chartData: [90, 40], chartLabel: "സ്കോർ (100 ൽ)", chartColors: ['#10b981', '#ef4444']
+                }
+            ],
+            en: [
+                {
+                    id: 1, category: "infra", categoryName: "Infrastructure", icon: "🌐",
+                    title: "The K-FON Promise",
+                    claim: "Provided free high-speed internet to 20 lakh BPL families.",
+                    stat: "Didn't even hit 1% of the target.",
+                    context: "Announced in 2017 to provide free internet for 2 million poor families. Today, barely a few thousand connections are active. Project execution is comically slow.",
+                    chartType: "doughnut", chartLabels: ["Target (20L)", "Actual (~15K)"],
+                    chartData: [2000000, 15000], chartLabel: "Connections", chartColors: ['#f1f5f9', '#ef4444']
+                },
+                {
+                    id: 2, category: "economy", categoryName: "Economy", icon: "💸",
+                    title: "Fiscal Stability & Debt",
+                    claim: "The state's economy is strong, and the fiscal deficit is under control.",
+                    stat: "Public Debt crossed ₹4 Lakh Crore",
+                    context: "Kerala is in a severe debt trap. Borrowing money just to pay interest on old loans is the new norm. CAG has raised multiple red flags.",
+                    chartType: "line", chartLabels: ["2016", "2018", "2020", "2022", "2024"],
+                    chartData: [1.8, 2.3, 2.9, 3.5, 4.1], chartLabel: "Debt (Lakh Cr)", chartColors: ['#ef4444']
+                },
+                {
+                    id: 3, category: "jobs", categoryName: "Employment", icon: "👨‍🎓",
+                    title: "20 Lakh New Jobs",
+                    claim: "Created 20 lakh jobs for the youth via K-DISC and other programs.",
+                    stat: "Highest Youth Unemployment",
+                    context: "According to PLFS reports, Kerala's youth unemployment is at 28.7%, far higher than the national average. Migration is the only way out.",
+                    chartType: "bar", chartLabels: ["India (3.2%)", "Kerala (7.2%)", "Kerala Youth (28.7%)"],
+                    chartData: [3.2, 7.2, 28.7], chartLabel: "Rate (%)", chartColors: ['#94a3b8', '#f59e0b', '#ef4444']
+                },
+                {
+                    id: 4, category: "economy", categoryName: "Public Sector", icon: "🚌",
+                    title: "Profitable KSRTC",
+                    claim: "Protected public sector units and turned them profitable.",
+                    stat: "Taking loans just to pay salaries",
+                    context: "KSRTC survives solely on government bailouts. Revenue doesn't even cover the wage bill.",
+                    chartType: "bar", chartLabels: ["Revenue", "Expenses"],
+                    chartData: [180, 240], chartLabel: "Amount (Cr)", chartColors: ['#3b82f6', '#ef4444']
+                },
+                {
+                    id: 5, category: "infra", categoryName: "Infrastructure", icon: "🚄",
+                    title: "SilverLine (K-Rail)",
+                    claim: "SilverLine will revolutionize Kerala's transportation.",
+                    stat: "Project practically abandoned",
+                    context: "Spurred protests and environmental concerns. Lacked central approval. Boundary stones were just for show.",
+                    chartType: "pie", chartLabels: ["Progress (0%)", "Stalled (100%)"],
+                    chartData: [0, 100], chartLabel: "Status", chartColors: ['#22c55e', '#ef4444']
+                },
+                {
+                    id: 6, category: "economy", categoryName: "Industry", icon: "🏭",
+                    title: "Investor's Paradise",
+                    claim: "Kerala is investor-friendly, topping ease of doing business.",
+                    stat: "Entrepreneurs are leaving",
+                    context: "Red tape and militant trade unions have forced major investors to move projects to neighboring states.",
+                    chartType: "bar", chartLabels: ["Claim Score", "Reality Score"],
+                    chartData: [90, 40], chartLabel: "Score (out of 100)", chartColors: ['#10b981', '#ef4444']
+                }
+            ]
+        };
 
         let currentChart = null;
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.ml-content').forEach(el => el.style.display = lang === 'ml' ? 'block' : 'none');
+            document.querySelectorAll('.en-content').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+
+            document.getElementById('btn-ml').className = `px-3 py-1 rounded-md text-xs font-bold transition-all ${lang === 'ml' ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white'}`;
+            document.getElementById('btn-en').className = `px-3 py-1 rounded-md text-xs font-bold transition-all ${lang === 'en' ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white'}`;
+
+            document.getElementById('empty-state').style.display = 'flex';
+            document.getElementById('detail-view').style.display = 'none';
+            renderList();
+        }
 
         function renderList(filterCategory = 'all') {
             const listContainer = document.getElementById('claims-list');
             listContainer.innerHTML = '';
+            const currentData = dataSet[currentLang];
 
-            const filteredData = filterCategory === 'all'
-                ? claimsData
-                : claimsData.filter(item => item.category === filterCategory);
+            const filteredData = filterCategory === 'all' ? currentData : currentData.filter(item => item.category === filterCategory);
 
             filteredData.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'claim-card bg-white p-4 mb-3 rounded-lg border border-gray-200 cursor-pointer flex gap-3 items-start';
+                card.className = 'claim-card bg-white p-4 mb-3 rounded-lg border border-slate-200 cursor-pointer flex gap-3 items-start shadow-sm';
                 card.onclick = () => showDetails(item.id, card);
+                const realityLabel = currentLang === 'ml' ? 'യാഥാർത്ഥ്യം' : 'Reality';
 
                 card.innerHTML = `
-                    <div class="text-2xl bg-gray-50 p-2 rounded-md">${item.icon}</div>
-                    <div>
-                        <div class="text-[10px] font-bold text-red-500 uppercase tracking-wide mb-1">${item.categoryName}</div>
-                        <h3 class="text-sm font-bold text-gray-800 leading-tight">${item.title}</h3>
-                        <p class="text-xs text-gray-500 mt-1 line-clamp-2">${item.claim}</p>
+                    <div class="text-2xl bg-slate-100 p-2 rounded-md">${item.icon}</div>
+                    <div class="w-full">
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1 outfit-font">${item.categoryName}</div>
+                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${item.title}</h3>
+                        <p class="text-xs text-red-500 font-bold mt-1 outfit-font bg-red-50 p-1 rounded inline-block">${realityLabel}: ${item.stat}</p>
                     </div>
                 `;
                 listContainer.appendChild(card);
@@ -377,35 +480,28 @@
         }
 
         function showDetails(id, cardElement) {
-
             document.querySelectorAll('.claim-card').forEach(c => c.classList.remove('active-card'));
             cardElement.classList.add('active-card');
-
-            const data = claimsData.find(item => item.id === id);
+            const data = dataSet[currentLang].find(item => item.id === id);
             if (!data) return;
 
             document.getElementById('empty-state').style.display = 'none';
-            document.getElementById('detail-content').style.display = 'flex';
-
+            document.getElementById('detail-view').style.display = 'flex';
             document.getElementById('detail-title').innerText = data.title;
-            document.getElementById('detail-category-badge').innerHTML = `<span>${data.icon}</span> ${data.categoryName} വിഭാഗം`;
-
+            const sectorLabel = currentLang === 'ml' ? 'വിഭാഗം' : 'Sector';
+            document.getElementById('detail-category-badge').innerHTML = `<span>${data.icon}</span> ${data.categoryName} ${sectorLabel}`;
             document.getElementById('detail-claim-text').innerText = `"${data.claim}"`;
             document.getElementById('detail-stat').innerText = data.stat;
             document.getElementById('detail-context').innerText = data.context;
-
-            document.getElementById('chart-title').innerText = `${data.title} - ഡാറ്റാ വിശകലനം`;
+            const chartHeadline = currentLang === 'ml' ? 'കണക്കുകൾ സംസാരിക്കട്ടെ' : 'The Data Speaks';
+            document.getElementById('chart-title').innerText = `${data.title} : ${chartHeadline}`;
 
             renderChart(data);
         }
 
         function renderChart(data) {
             const ctx = document.getElementById('analysisChart').getContext('2d');
-
-            if (currentChart) {
-                currentChart.destroy();
-            }
-
+            if (currentChart) currentChart.destroy();
             const isPieOrDoughnut = data.chartType === 'pie' || data.chartType === 'doughnut';
 
             currentChart = new Chart(ctx, {
@@ -415,52 +511,21 @@
                     datasets: [{
                         label: data.chartLabel,
                         data: data.chartData,
-                        backgroundColor: isPieOrDoughnut ? data.chartColors : data.chartColors[0],
                         backgroundColor: data.chartColors,
-                        borderWidth: 1,
-                        borderColor: '#ffffff'
+                        borderWidth: isPieOrDoughnut ? 2 : 0,
+                        borderColor: '#f8fafc',
+                        borderRadius: data.chartType === 'bar' ? 4 : 0
                     }]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: isPieOrDoughnut,
-                            position: 'bottom'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) { label += ': '; }
-                                    if (context.parsed.y !== null && !isPieOrDoughnut) {
-                                        label += context.parsed.y;
-                                    } else {
-                                        label += context.raw;
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
+                        legend: { display: isPieOrDoughnut, position: 'bottom', labels: { font: { family: currentLang === 'ml' ? 'Manjari' : 'Inter' } } },
+                        tooltip: { backgroundColor: '#1e293b', titleFont: { family: 'Outfit', size: 13 }, bodyFont: { family: 'Inter', size: 14, weight: 'bold' }, padding: 12, cornerRadius: 8 }
                     },
                     scales: isPieOrDoughnut ? {} : {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: '#f1f5f9' }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: {
-                                callback: function (value) {
-                                    const label = this.getLabelForValue(value);
-                                    if (typeof label === 'string' && label.length > 16) {
-                                        return label.match(/.{1,16}(\s|$)/g) || [label];
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
+                        y: { beginAtZero: true, grid: { color: '#e2e8f0', drawBorder: false } },
+                        x: { grid: { display: false }, ticks: { font: { family: 'Inter', weight: '600' }, color: '#475569' } }
                     }
                 }
             });
@@ -470,13 +535,13 @@
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.filter-btn').forEach(b => {
                     b.classList.remove('active-filter');
-                    b.classList.add('bg-white', 'text-gray-600');
+                    b.classList.add('bg-white', 'text-slate-600');
                 });
                 e.target.classList.add('active-filter');
-                e.target.classList.remove('bg-white', 'text-gray-600');
-
-                const filterValue = e.target.getAttribute('data-filter');
-                renderList(filterValue);
+                e.target.classList.remove('bg-white', 'text-slate-600');
+                renderList(e.target.getAttribute('data-filter'));
+                document.getElementById('empty-state').style.display = 'flex';
+                document.getElementById('detail-view').style.display = 'none';
             });
         });
 
